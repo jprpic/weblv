@@ -1,7 +1,7 @@
 <?php
 
 //Naziv baze podataka
-$db_name = 'backup';
+$db_name = 'iot';
 
 //Direktorij za backup
 $dir = "backup/$db_name";
@@ -16,7 +16,7 @@ if (!is_dir($dir)) {
 //Trenutno vrijeme
 $time = time();
 
-$pdo = new PDO('mysql:dbname=backup;host=localhost;', 'root', '');
+$pdo = new PDO("mysql:dbname=$db_name;host=localhost;", 'root', '');
 $tables = $pdo->query('SHOW TABLES')->fetchAll(PDO::FETCH_COLUMN, 0);
 
 if($tables){
