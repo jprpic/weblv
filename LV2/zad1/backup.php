@@ -44,11 +44,12 @@ if($tables){
                     gzwrite($fp, $backupString);
                 }
 
+                // Kraj gzopen()
                 gzclose($fp);
             }else { //Ne možemo stvoriti datoteku
                 echo "<p>Datoteka $dir/{$table}_{$time}.sql.gz se ne može otvoriti.</p>";
                 break; //Prekini while petlju
-            } // Kraj gzopen()
+            }
 
         }
     }

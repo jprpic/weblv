@@ -1,31 +1,33 @@
 <?php
-function save_file($file_name, $data, $iv){
-    $db_name = 'encrypt';
-    $pdo = new PDO("mysql:dbname=$db_name;host=localhost;", 'root', '');
-    $sql = "INSERT INTO documents VALUES (?, ?)";
+require_once('./encrypt.php');
 
+// Get available files
+$files = preg_grep('/^([^.])/', scandir('./documents/'));
 
-
-    file_put_contents("./documents/$file_name", $data);
+if(isset($_GET['document'])){
+    // Download file from link
+    get_file($_GET['document']);
 }
 
+if(isset($_FILES['userfile']['name'])){
 
-if(isset($_FILES['userfile']) && $_FILES['userfile']['type'] == 'text/plain'){
-    require_once('./encrypt.php');
+    // Check if a file with the same name already exists
     $file_name = $_FILES['userfile']['name'];
-    $file_contents = file_get_contents($_FILES['userfile']['tmp_name']);
-    $encrypted_data = encrypt_data($file_contents);
-
-    $files = scandir('./documents/');
     if(!in_array($file_name, $files)){
-        save_file("./documents/$file_name", $encrypted_data['data'], $encrypted_data['iv']);
+        // Create encrypted data and initialization vector
+        $file_contents = file_get_contents($_FILES['userfile']['tmp_name']);
+        $encrypted_data = encrypt_data($file_contents);
+
+        // Save file to server and initialization vector to database
+        save_file($file_name, $encrypted_data['data'], $encrypted_data['iv']);
+
+        // Refresh available files with new one included
+        $files = preg_grep('/^([^.])/', scandir('./documents/'));
     }
     else{
         echo 'Document with the same name already exists!';
     }
-}
-else{
-    echo 'Invalid type format. Accepting only .txt files';
+
 }
 
 ?>
@@ -37,3 +39,11 @@ else{
     Send this file: <input name="userfile" type="file" />
     <input type="submit" value="Send File" />
 </form>
+
+<?php
+
+    foreach($files as $file_name){
+        echo "<a href='./upload.php?document=$file_name'>" . "$file_name" . '</a>'. '</br>';
+    }
+
+?>
