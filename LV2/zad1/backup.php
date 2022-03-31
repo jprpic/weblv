@@ -1,7 +1,7 @@
 <?php
 
 //Naziv baze podataka
-$db_name = 'iot';
+$db_name = 'encrypt';
 
 //Direktorij za backup
 $dir = "backup/$db_name";

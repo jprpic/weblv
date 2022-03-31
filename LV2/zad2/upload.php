@@ -1,5 +1,9 @@
 <?php
 require_once('./encrypt.php');
+require_once ('./dbcreate.php');
+
+// Create necessary documents table
+createTable();
 
 // Get available files
 $files = preg_grep('/^([^.])/', scandir('./documents/'));
