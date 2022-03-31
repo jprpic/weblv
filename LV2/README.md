@@ -1,5 +1,5 @@
 ### Zadatak 1
-Potrebno je otvoriti skriptu backup.php i izmijeniti $db_name u ime tablice čiji backup želimo.
+Potrebno je otvoriti skriptu backup.php i izmijeniti $db_name u ime tablice čiji backup želimo. U direktoriju backup nalaze se primjeri backupanih baza podataka.
 
 ### Zadatak 2
 Potrebno je kreirati 'encrypt' bazu podataka. Nakon toga pokretanjem upload.php skripte se mogu predati datoteke za upload.
