@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('price');
             $table->string('tasks_done',500);
             $table->timestamps();
-            $table->dateTime('finished_at');
+            $table->softDeletes();
         });
     }
 

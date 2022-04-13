@@ -1,6 +1,7 @@
  <?php
 
-use Illuminate\Support\Facades\Route;
+ use App\Http\Controllers\Projects;
+ use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +18,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth','verified'])->name('dashboard');
+ Route::middleware(['auth','verified'])->group(function(){
+     Route::get('/dashboard', [Projects::class, 'index'])->name('dashboard');
+
+     Route::get('/create', [Projects::class, 'create'])->name('create');
+
+     Route::post('/store',[Projects::class, 'store'])->name('store');
+ });
 
 require __DIR__.'/auth.php';
