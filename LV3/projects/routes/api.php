@@ -1,6 +1,7 @@
 <?php
 
-use App\Models\User;
+use App\Http\Controllers\Projects;
+use App\Http\Controllers\ProjectUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,11 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::middleware('auth:sanctum')->group(function(){
+    Route::get('/user', function(Request $request){
+        return $request->user();
+    });
 
-Route::get('/users', function () {
-    $users = User::select('id', 'name')->get();
-    return response()->json($users);
-})->middleware(['auth']);
+    Route::get('/project/{id}/availableUsers', [ProjectUser::class, 'getAvailableUsers']);
+
+    Route::get('project/{id}/members', [ProjectUser::class, 'getMembers']);
+
+    Route::get('projects', [Projects::class, 'getProjects']);
+});

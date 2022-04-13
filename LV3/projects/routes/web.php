@@ -1,6 +1,7 @@
  <?php
 
  use App\Http\Controllers\Projects;
+ use App\Http\Controllers\ProjectUser;
  use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +27,13 @@ Route::get('/', function () {
      Route::post('/store',[Projects::class, 'store'])->name('store');
 
      Route::get('/project/{id}', [Projects::class, 'show'])->name('project');
+
+     Route::post('/project/user/store', [ProjectUser::class, 'store']);
+
+     Route::post('/project/user/destroy', [ProjectUser::class, 'destroy']);
+
+     Route::get('/profile/{id}', [ProjectUser::class, 'showProfile'])->name('profile');
  });
+
 
 require __DIR__.'/auth.php';
