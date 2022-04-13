@@ -24,6 +24,8 @@ Route::get('/', function () {
      Route::get('/create', [Projects::class, 'create'])->name('create');
 
      Route::post('/store',[Projects::class, 'store'])->name('store');
+
+     Route::get('/project/{id}', [Projects::class, 'show'])->name('project');
  });
 
 require __DIR__.'/auth.php';

@@ -8,12 +8,9 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <x-project-entry>
-                    Laravel LV3
-                </x-project-entry>
 
                 @foreach($projects as $project)
-                    <x-project-entry :members="('Hyde, Jackie, Kelso')" >
+                    <x-project-entry :members="('Hyde, Jackie, Kelso')" :id="$project->id" >
                         {{ $project->name }}
                     </x-project-entry>
                 @endforeach

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,9 +25,17 @@ class Projects extends Controller
         $project->name = $request->name;
         $project->price = $request->price;
         $project->description = $request->description;
-        $project->lead_user_id = Auth::id();
+        $project->team_lead_id = Auth::id();
 
         $project->save();
         return redirect('dashboard');
+    }
+
+    public function show(Request $request, $id){
+        $project = Project::find($id);
+        return view('project',[
+            'project'=> $project,
+            'team_lead_name' => User::find($project->team_lead_id)->name,
+            ]);
     }
 }
