@@ -26,13 +26,21 @@ Route::get('/', function () {
 
      Route::post('/store',[Projects::class, 'store'])->name('store');
 
+     Route::get('/edit/{id}',[Projects::class, 'edit'])->name('edit');
+
+     Route::put('/project/{id}', [Projects::class, 'update'])->name('update');
+
      Route::get('/project/{id}', [Projects::class, 'show'])->name('project');
 
-     Route::post('/project/user/store', [ProjectUser::class, 'store']);
+     Route::get('/finish/{id}', [Projects::class, 'finish'])->name('finish');
 
-     Route::post('/project/user/destroy', [ProjectUser::class, 'destroy']);
+     Route::post('/project/user/store', [ProjectUser::class, 'store'])->name('user.store');
 
-     Route::get('/profile/{id}', [ProjectUser::class, 'showProfile'])->name('profile');
+     Route::post('/project/user/destroy', [ProjectUser::class, 'destroy'])->name('user.destroy');
+
+     Route::get('/profile/{id}', [ProjectUser::class, 'showProfile'])->name('user.profile');
+
+
  });
 
 

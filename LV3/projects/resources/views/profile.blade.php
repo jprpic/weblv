@@ -11,7 +11,9 @@
                     <h2> <span style="font-size: large;font-weight: bold">Leading projects:</span></h2>
                     @foreach($lead_projects as $project)
                         <div class="p-6 bg-white border-gray-200">
-                            <a href="../project/{{ $project->id }}"><span style="font-weight: bold; font-size: large">{{ $project->name }}</span></a>
+                            <a href="{{ route('project',['id'=>$project->id]) }}">
+                                <span style="font-weight: bold; font-size: large">{{ $project->name }}</span>
+                            </a>
                         </div>
                     @endforeach
                 </div>
@@ -19,7 +21,9 @@
                     <h2> <span style="font-size: large;font-weight: bold">Member projects:</span></h2>
                     @foreach($member_projects as $project)
                         <div class="p-6 bg-white border-gray-200">
-                            <a href="../project/{{ $project->id }}"><span style="font-weight: bold; font-size: large">{{ $project->name }}</span></a>
+                            <a href="{{ route('project',['id'=>$project->id]) }}">
+                                <span style="font-weight: bold; font-size: large">{{ $project->name }}</span>
+                            </a>
                         </div>
                     @endforeach
                 </div>
