@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('name',100);
             $table->string('name_eng',100);
             $table->string('description', 1000);
-            $table->string('study', 15);
+            $table->unsignedTinyInteger('study');
             $table->timestamps();
         });
 
