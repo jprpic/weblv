@@ -13,6 +13,10 @@ class Study extends Model
         'name'
     ];
 
+    public const STRUCNI = 1;
+    public const PREDDIPLOMSKI = 2;
+    public const DIPLOMSKI = 3;
+
     public function tasks()
     {
         return $this->belongsToMany(Task::class);

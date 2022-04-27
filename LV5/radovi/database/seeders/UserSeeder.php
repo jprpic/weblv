@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Role;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -27,7 +28,7 @@ class UserSeeder extends Seeder
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
                 'updated_at' => now(),
-                'role' => 3
+                'role' => Role::ADMIN
             ],
             [
                 'id' => '2',
@@ -38,7 +39,7 @@ class UserSeeder extends Seeder
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
                 'updated_at' => now(),
-                'role' => 1
+                'role' => Role::STUDENT
             ],
             [
                 'id' => '3',
@@ -49,7 +50,7 @@ class UserSeeder extends Seeder
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
                 'updated_at' => now(),
-                'role' => 1
+                'role' => Role::STUDENT
             ],
             [
                 'id' => '4',
@@ -60,7 +61,7 @@ class UserSeeder extends Seeder
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
                 'updated_at' => now(),
-                'role' => 1
+                'role' => Role::STUDENT
             ],
 
         ]);
