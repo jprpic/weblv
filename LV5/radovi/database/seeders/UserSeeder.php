@@ -57,11 +57,22 @@ class UserSeeder extends Seeder
                 'name' => 'Borna',
                 'email' => 'borna@gmail.com',
                 'email_verified_at' => now(),
-                'password' => Hash::make('admin123'),
+                'password' => Hash::make('password'),
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
                 'updated_at' => now(),
                 'role' => Role::STUDENT
+            ],
+            [
+                'id' => '5',
+                'name' => 'Nastavnik',
+                'email' => 'prof@gmail.com',
+                'email_verified_at' => now(),
+                'password' => Hash::make('password'),
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+                'role' => Role::TEACHER
             ],
 
         ]);
