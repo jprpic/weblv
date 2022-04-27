@@ -10,13 +10,14 @@ return new class extends Migration
      * Run the migrations.
      *
      * @return void
+     *
      */
     public function up()
     {
-        Schema::create('applications', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('task_id')->constrained();
-            $table->primary(['user_id','task_id']);
+        Schema::create('studies', function (Blueprint $table) {
+            $table->unsignedTinyInteger('id');
+            $table->primary('id');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('applications');
+        Schema::dropIfExists('studies');
     }
 };

@@ -11,12 +11,16 @@ return new class extends Migration
      *
      * @return void
      */
+
+    // Tasks can be done by students from various study programmes
+
     public function up()
     {
-        Schema::create('roles', function (Blueprint $table) {
-            $table->unsignedTinyInteger('id');
-            $table->primary('id');
-            $table->string('name');
+        Schema::create('study_task', function (Blueprint $table) {
+            $table->unsignedTinyInteger('study_id');
+            $table->foreign('study_id')->references('id')->on('studies');
+            $table->foreignId('task_id')->constrained();
+            $table->primary(['study_id','task_id']);
             $table->timestamps();
         });
     }
@@ -28,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('study_task');
     }
 };

@@ -16,4 +16,18 @@ class Task extends Model
         'study'
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function studies()
+    {
+        return $this->belongsToMany(Study::class);
+    }
+
+    public function applicants()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }

@@ -11,11 +11,16 @@ return new class extends Migration
      *
      * @return void
      */
+
+    // Students can apply for multiple tasks before picking one
+
     public function up()
     {
-        Schema::table('users', function(Blueprint $table){
-            $table->unsignedTinyInteger('role');
-            $table->foreign('role')->references('id')->on('roles');
+        Schema::create('task_user', function (Blueprint $table) {
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('task_id')->constrained();
+            $table->primary(['user_id','task_id']);
+            $table->timestamps();
         });
     }
 
@@ -26,8 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('users', function(Blueprint $table){
-            $table->dropForeign(['role']);
-        });
+        Schema::dropIfExists('task_user');
     }
 };
