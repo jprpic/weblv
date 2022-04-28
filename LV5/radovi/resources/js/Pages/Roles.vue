@@ -34,7 +34,6 @@ defineProps({
 </template>
 
 <script>
-import { Inertia } from '@inertiajs/inertia'
 export default{
     methods:{
         roleLabel(role_id){

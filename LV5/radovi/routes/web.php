@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
@@ -49,10 +50,13 @@ Route::group(['middleware' => 'auth'], function(){
     });
 
     Route::group([
-       'prefix' => 'user',
-       'as' => 'user.'
+       'prefix' => 'student',
+       'as' => 'student.'
     ], function(){
-
+        Route::get('/tasks',[StudentController::class, 'index'])->name('tasks.index');
+        Route::post('/store/{id}', [StudentController::class, 'store'])->name('tasks.store');
+        Route::get('/tasks/{id}', [StudentController::class, 'show'])->name('tasks.show');
+        Route::delete('/tasks/{id}',[StudentController::class, 'destroy'])->name('tasks.destroy');
     });
 });
 
