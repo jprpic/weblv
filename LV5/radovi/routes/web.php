@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
@@ -26,7 +27,9 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    return Inertia::render('Dashboard',[
+        'role' => Auth()->user()->role_id,
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::group(['middleware' => 'auth'], function(){
@@ -34,7 +37,8 @@ Route::group(['middleware' => 'auth'], function(){
         'prefix' => 'admin',
         'as' => 'admin.'
     ], function(){
-
+        Route::get('/roles', [AdminController::class, 'roles'])->name('roles');
+        Route::post('/roles/{id}', [AdminController::class, 'changeRole'])->name('changeRole');
     });
 
     Route::group([

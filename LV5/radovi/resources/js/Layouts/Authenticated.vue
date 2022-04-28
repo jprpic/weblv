@@ -8,6 +8,10 @@ import BreezeResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import { Link } from '@inertiajs/inertia-vue3';
 
 const showingNavigationDropdown = ref(false);
+const props = defineProps({
+    role: Number
+})
+
 </script>
 
 <template>
@@ -30,11 +34,9 @@ const showingNavigationDropdown = ref(false);
                                 <BreezeNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </BreezeNavLink>
-
-                                <BreezeNavLink :href="route('admin.roles')" :active="route().current('admin.roles')">
+                                <BreezeNavLink v-if="role===3" :href="route('admin.roles')" :active="route().current('admin.roles')">
                                     Roles
                                 </BreezeNavLink>
-
                             </div>
                         </div>
 
