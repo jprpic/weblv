@@ -24,7 +24,7 @@ defineProps({
                     <div v-for="user in users" class="p-6 bg-white border-b border-gray-200" :key="user.id">
                         <div class="flex justify-between">
                             <div>{{ user.name }}</div>
-                            <BreezeButton type="button" @click="changeRole(user.id)">{{ roleLabel(user.role_id) }}</BreezeButton>
+                            <BreezeButton type="button" @click="changeRole(user)" :disabled="user.id===1">{{ roleLabel(user.role_id) }}</BreezeButton>
                         </div>
                     </div>
                 </div>
@@ -49,7 +49,12 @@ export default{
                     return 'Invalid';
             }
         },
-        changeRole(user_id){
+        changeRole(user){
+            const axios = require('axios').default;
+            axios.post(`./roles/${user.id}`)
+            .then(function(response){
+                user.role_id = response.data.role_id;
+            });
         }
     }
 }

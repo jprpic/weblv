@@ -19,6 +19,14 @@ class AdminController extends Controller
     }
 
     public function changeRole(Request $request, $id){
-        return response()->json($id);
+        // Array to allow cycling between roles
+        $role_ids = array(3, 1, 2, 3);
+
+        $user = User::find($id);
+        $current_role = $user->role_id;
+        $user->role_id = $role_ids[$current_role - 1];
+        $user->save();
+
+        return response()->json($user);
     }
 }

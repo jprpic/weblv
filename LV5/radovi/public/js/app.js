@@ -22460,7 +22460,13 @@ var __default__ = {
           return 'Invalid';
       }
     },
-    changeRole: function changeRole(user_id) {}
+    changeRole: function changeRole(user) {
+      var axios = (__webpack_require__(/*! axios */ "./node_modules/axios/index.js")["default"]);
+
+      axios.post("./roles/".concat(user.id)).then(function (response) {
+        user.role_id = response.data.role_id;
+      });
+    }
   }
 };
 
@@ -23867,8 +23873,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BreezeButton"], {
           type: "button",
           onClick: function onClick($event) {
-            return $options.changeRole(user.id);
-          }
+            return $options.changeRole(user);
+          },
+          disabled: user.id === 1
         }, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
             return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.roleLabel(user.role_id)), 1
@@ -23880,7 +23887,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
         }, 1032
         /* PROPS, DYNAMIC_SLOTS */
-        , ["onClick"])])]);
+        , ["onClick", "disabled"])])]);
       }), 128
       /* KEYED_FRAGMENT */
       ))])])])];
