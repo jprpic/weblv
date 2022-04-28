@@ -47,6 +47,7 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
+    // Student has only one task he's working on
     public function task()
     {
         return $this->hasOne(Task::class);
@@ -55,5 +56,11 @@ class User extends Authenticatable
     public function applications()
     {
         return $this->belongsToMany(Task::class);
+    }
+
+    // Teacher has many tasks he created
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
     }
 }

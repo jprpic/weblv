@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function(Blueprint $table){
-            $table->unsignedTinyInteger('role');
-            $table->foreign('role')->references('id')->on('roles');
+            $table->unsignedTinyInteger('role_id');
+            $table->foreign('role_id')->references('id')->on('roles');
         });
     }
 
@@ -27,7 +27,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('users', function(Blueprint $table){
-            $table->dropForeign(['role']);
+            $table->dropForeign(['role_id']);
         });
     }
 };

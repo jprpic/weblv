@@ -16,7 +16,7 @@ class Task extends Model
         'study'
     ];
 
-    public function user()
+    public function student()
     {
         return $this->belongsTo(User::class);
     }
@@ -29,5 +29,10 @@ class Task extends Model
     public function applicants()
     {
         return $this->belongsToMany(User::class);
+    }
+
+    public function teacher()
+    {
+        return $this->belongsTo(User::class);
     }
 }

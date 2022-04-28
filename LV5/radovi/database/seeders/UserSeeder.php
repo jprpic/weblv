@@ -28,7 +28,7 @@ class UserSeeder extends Seeder
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
                 'updated_at' => now(),
-                'role' => Role::ADMIN
+                'role_id' => Role::ADMIN
             ],
             [
                 'id' => '2',
@@ -39,7 +39,7 @@ class UserSeeder extends Seeder
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
                 'updated_at' => now(),
-                'role' => Role::STUDENT
+                'role_id' => Role::STUDENT
             ],
             [
                 'id' => '3',
@@ -50,7 +50,7 @@ class UserSeeder extends Seeder
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
                 'updated_at' => now(),
-                'role' => Role::STUDENT
+                'role_id' => Role::STUDENT
             ],
             [
                 'id' => '4',
@@ -61,7 +61,7 @@ class UserSeeder extends Seeder
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
                 'updated_at' => now(),
-                'role' => Role::STUDENT
+                'role_id' => Role::STUDENT
             ],
             [
                 'id' => '5',
@@ -72,7 +72,7 @@ class UserSeeder extends Seeder
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
                 'updated_at' => now(),
-                'role' => Role::TEACHER
+                'role_id' => Role::TEACHER
             ],
 
         ]);

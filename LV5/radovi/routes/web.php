@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -27,5 +28,29 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::group(['middleware' => 'auth'], function(){
+    Route::group([
+        'prefix' => 'admin',
+        'as' => 'admin.'
+    ], function(){
+
+    });
+
+    Route::group([
+        'prefix' => 'teacher',
+        'as' => 'teacher.'
+    ],function(){
+
+    });
+
+    Route::group([
+       'prefix' => 'user',
+       'as' => 'user.'
+    ], function(){
+
+    });
+});
+
 
 require __DIR__.'/auth.php';
