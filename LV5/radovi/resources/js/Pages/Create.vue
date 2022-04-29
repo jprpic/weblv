@@ -8,6 +8,7 @@ import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
 
 defineProps({
     role: Number,
+    trans: Object
 })
 
 const form = useForm({
@@ -28,7 +29,7 @@ const submit = () => {
     <BreezeAuthenticatedLayout :role="role">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __("create") }}
+                {{ trans.create }}
             </h2>
         </template>
 
@@ -39,38 +40,38 @@ const submit = () => {
 
                         <form @submit.prevent="submit">
                             <div>
-                                <BreezeLabel for="name" value="Name"/>
+                                <BreezeLabel for="name" :value="trans.name" />
                                 <BreezeInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autofocus />
                             </div>
 
                             <div class="mt-4">
-                                <BreezeLabel for="name_eng" value="Name (English)" />
+                                <BreezeLabel for="name_eng" :value="trans.name_eng" />
                                 <BreezeInput id="name_eng" type="text" class="mt-1 block w-full" v-model="form.name_eng" required />
                             </div>
 
                             <div class="mt-4">
-                                <BreezeLabel for="description" value="Description" />
+                                <BreezeLabel for="description" :value="trans.description" />
                                 <textarea v-model="form.description" class='mt-1 w-full block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50'></textarea>
                             </div>
 
                             <div class="block mt-4">
                                 <label class="flex items-center">
                                     <BreezeCheckbox name="strucni" value="1" v-model:checked="form.studies" />
-                                    <span class="ml-2 text-sm text-gray-600">Stručni</span>
+                                    <span class="ml-2 text-sm text-gray-600">{{ trans.strucni }}</span>
                                 </label>
                                 <label class="flex items-center">
                                     <BreezeCheckbox name="preddiplomski" value="2" v-model:checked="form.studies" />
-                                    <span class="ml-2 text-sm text-gray-600">Preddiplomski</span>
+                                    <span class="ml-2 text-sm text-gray-600">{{ trans.preddiplomski }}</span>
                                 </label>
                                 <label class="flex items-center">
                                     <BreezeCheckbox name="diplomski" value="3" v-model:checked="form.studies" />
-                                    <span class="ml-2 text-sm text-gray-600">Diplomski</span>
+                                    <span class="ml-2 text-sm text-gray-600">{{ trans.diplomski }}</span>
                                 </label>
                             </div>
 
                             <div class="flex items-center justify-end mt-4">
                                 <BreezeButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                                    Submit
+                                    {{ trans.submit }}
                                 </BreezeButton>
                             </div>
                         </form>

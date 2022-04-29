@@ -19,9 +19,7 @@
     </head>
     <body class="font-sans antialiased">
         @inertia
-
-        <x-translations></x-translations>
-
+        
         @env ('local')
             <script src="http://localhost:8080/js/bundle.js"></script>
         @endenv

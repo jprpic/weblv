@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Gate;
 use Inertia\Inertia;
 
@@ -55,10 +56,12 @@ class TeacherController extends Controller
         if (! in_array($locale, ['en', 'hr'])) {
             abort(400);
         }
+
         App::setLocale($locale);
-        
+
         return Inertia::render('Create',[
             'role' => Auth()->user()->role_id,
+            'trans' => json_decode(File::get(lang_path("$locale.json")))->create
         ]);
     }
 

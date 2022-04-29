@@ -43,6 +43,9 @@ const props = defineProps({
                                 <BreezeNavLink v-if="role===2" :href="route('teacher.tasks.create','en')" :active="route().current('teacher.tasks.create','en')">
                                     Create
                                 </BreezeNavLink>
+                                <BreezeNavLink v-if="role===2" :href="route('teacher.tasks.create','hr')" :active="route().current('teacher.tasks.create','hr')">
+                                    Kreiraj
+                                </BreezeNavLink>
                                 <BreezeNavLink v-if="role===1" :href="route('student.tasks.index')" :active="route().current('student.tasks.index')">
                                     Tasks
                                 </BreezeNavLink>
