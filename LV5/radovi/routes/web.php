@@ -49,6 +49,7 @@ Route::group(['middleware' => 'auth'], function(){
     ],function(){
         Route::get('/tasks', [TeacherController::class, 'index'])->name('tasks.index');
         Route::get('/create', [TeacherController::class, 'create'])->name('tasks.create');
+        Route::post('/store', [TeacherController::class, 'store'])->name('tasks.store');
         Route::post('/tasks/{id}/student', [TeacherController::class, 'studentStore'])->name('tasks.student.store');
         Route::post('/tasks/{id}/destroy', [TeacherController::class, 'studentDestroy'])->name('tasks.student.destroy');
     });

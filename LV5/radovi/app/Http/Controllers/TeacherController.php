@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Inertia\Inertia;
 
@@ -29,10 +30,8 @@ class TeacherController extends Controller
                         ];
                         array_push($applicants, $applicant_data);
                     }
-
                 }
             }
-
             $data = [
                 'id' => $task->id,
                 'name' => $task->name,
@@ -52,9 +51,44 @@ class TeacherController extends Controller
 
     public function create(Request $request){
         Gate::authorize('tasks_create');
+
+        return Inertia::render('Create',[
+            'role' => Auth()->user()->role_id,
+        ]);
+    }
+
+    public function store(Request $request){
+        Gate::authorize('tasks_create');
+
+        if($request->has(['name','name_eng','description','studies'])){
+            $request->validate([
+                'name' => ['required', 'max:100'],
+                'name_eng' => ['required', 'max:100'],
+                'description' => ['required', 'max:1000'],
+                'studies' => 'array:0,1,2'
+            ]);
+            $task = new Task();
+            $task->created_by = Auth()->id();
+            $task->name = $request->input('name');
+            $task->name_eng = $request->input('name_eng');
+            $task->description = $request->input('description');
+
+            $task->save();
+
+            foreach($request->input('studies') as $study_id){
+                DB::insert('INSERT INTO study_task (study_id, task_id, created_at, updated_at) VALUES (?, ?, ?, ?)',[$study_id, $task->id, now(), now()]);
+            }
+
+            return redirect('dashboard');
+        }
+        return response('Invalid request', 400)
+            ->header('Content-Type', 'text/plain');
+
     }
 
     public function studentStore(Request $request, $task_id){
+        Gate::authorize('tasks_create');
+
         if($request->has('user_id')){
             $user_id = $request->get('user_id');
 
@@ -74,6 +108,8 @@ class TeacherController extends Controller
     }
 
     public function studentDestroy(Request $request, $task_id){
+        Gate::authorize('tasks_create');
+
         if($request->has('user_id')){
             $user_id = $request->get('user_id');
 
