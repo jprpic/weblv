@@ -6,6 +6,7 @@ defineProps({
     role: Number,
     tasks: Array,
     applied_tasks: Array,
+    accepted_task: Number,
 })
 </script>
 
@@ -25,7 +26,7 @@ defineProps({
                     <div v-for="task in tasks" class="p-6 bg-white border-b border-gray-200" :key="task.id">
                         <div class="flex justify-between">
                             <div>
-                                <h2 style="font-size: large"> {{ task.name }}</h2>
+                                <h2 style="font-size: large; font-weight: bold"> {{ task.name }}</h2>
                                 <p> <span style="font-size: smaller; font-weight: lighter;font-style: italic"> {{ task.name_eng }} </span><br>
                                 <span style="font-weight: bold">Teacher: </span> {{ task.teacher }}
                                 </p>
@@ -33,7 +34,7 @@ defineProps({
                             <div class="flex flex-col items-stretch">
                                 <div><span v-for="study in task.studies">{{ study }}&nbsp; </span></div>
                                 <div class="self-end py-2">
-                                    <BreezeButton type="button" @click="apply(task.id)">
+                                    <BreezeButton type="button" @click="apply(task.id)" :disabled="accepted_task">
                                         {{ applyLabel(task.id) }}
                                     </BreezeButton>
                                 </div>
@@ -64,7 +65,7 @@ export default {
             }
         },
         applyLabel(task_id){
-            return this.applied_tasks.includes(task_id) ? 'Applied' : 'Apply';
+            return this.accepted_task === task_id ? 'Accepted' : this.applied_tasks.includes(task_id) ? 'Applied' : 'Apply';
         }
     }
 }

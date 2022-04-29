@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TeacherController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
@@ -46,7 +47,10 @@ Route::group(['middleware' => 'auth'], function(){
         'prefix' => 'teacher',
         'as' => 'teacher.'
     ],function(){
-
+        Route::get('/tasks', [TeacherController::class, 'index'])->name('tasks.index');
+        Route::get('/create', [TeacherController::class, 'create'])->name('tasks.create');
+        Route::post('/tasks/{id}/student', [TeacherController::class, 'studentStore'])->name('tasks.student.store');
+        Route::post('/tasks/{id}/destroy', [TeacherController::class, 'studentDestroy'])->name('tasks.student.destroy');
     });
 
     Route::group([
@@ -55,7 +59,6 @@ Route::group(['middleware' => 'auth'], function(){
     ], function(){
         Route::get('/tasks',[StudentController::class, 'index'])->name('tasks.index');
         Route::post('/store/{id}', [StudentController::class, 'store'])->name('tasks.store');
-        Route::get('/tasks/{id}', [StudentController::class, 'show'])->name('tasks.show');
         Route::delete('/tasks/{id}',[StudentController::class, 'destroy'])->name('tasks.destroy');
     });
 });

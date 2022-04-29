@@ -18,33 +18,36 @@ class StudentController extends Controller
         // Get available tasks
         $tasks = [];
         foreach(Task::all() as $task){
-            if(is_null($task->user_id)){
-                $studies = [];
-                foreach($task->studies as $study){
-                    array_push($studies, $study->name);
-                }
-
-                $data = [
-                    'id' => $task->id,
-                    'teacher' => $task->teacher->name,
-                    'studies' => $studies,
-                    'name' => $task->name,
-                    'name_eng' => $task->name_eng,
-                    'description' => $task->description
-                ];
-
-                array_push($tasks, $data);
+            $studies = [];
+            foreach($task->studies as $study){
+                array_push($studies, $study->name);
             }
+
+            $data = [
+                'id' => $task->id,
+                'teacher' => $task->teacher->name,
+                'studies' => $studies,
+                'name' => $task->name,
+                'name_eng' => $task->name_eng,
+                'description' => $task->description
+            ];
+
+            array_push($tasks, $data);
         }
         // Get tasks current student applied for
         $applied_tasks = [];
         foreach(Auth()->user()->applications as $application){
             array_push($applied_tasks, $application->id);
         }
+
+
+        $accepted_task = Auth()->user()->task->id ?? null;
+
         return Inertia::render('Tasks',[
             'role' => Auth()->user()->role_id,
             'tasks' => $tasks,
-            'applied_tasks' => $applied_tasks
+            'applied_tasks' => $applied_tasks,
+            'accepted_task' => $accepted_task,
         ]);
     }
 
