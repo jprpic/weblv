@@ -5,14 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8e9a2f03-75f1-48f5-bd07-18543f37b63a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../LV5/radovi/lang/en/task_create.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../LV5/radovi/lang/hr/task_create.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LV5/radovi/resources/js/Mixins/translations.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LV5/radovi/app/Http/Controllers/TeacherController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../LV5/radovi/app/Http/Controllers/TeacherController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LV5/radovi/app/View/Components/Translations.php" beforeDir="false" afterPath="$PROJECT_DIR$/../LV5/radovi/app/View/Components/Translations.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../LV5/radovi/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/../LV5/radovi/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../LV5/radovi/resources/js/Layouts/Authenticated.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../LV5/radovi/resources/js/Layouts/Authenticated.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../LV5/radovi/resources/js/Pages/Create.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../LV5/radovi/resources/js/Pages/Create.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LV5/radovi/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/../LV5/radovi/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LV5/radovi/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/../LV5/radovi/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LV5/radovi/resources/views/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../LV5/radovi/resources/views/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LV5/radovi/resources/views/components/translations.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../LV5/radovi/resources/views/components/translations.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

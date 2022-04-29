@@ -28,7 +28,7 @@ const submit = () => {
     <BreezeAuthenticatedLayout :role="role">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Create
+                {{ __("name_eng") }}
             </h2>
         </template>
 
@@ -39,7 +39,7 @@ const submit = () => {
 
                         <form @submit.prevent="submit">
                             <div>
-                                <BreezeLabel for="name" value="Name" />
+                                <BreezeLabel for="name" value="Name"/>
                                 <BreezeInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autofocus />
                             </div>
 

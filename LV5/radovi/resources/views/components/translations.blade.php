@@ -1,3 +1,3 @@
-<div>
+<script>
     window._translations = @json($translations);
-</div>
+</script>

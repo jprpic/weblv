@@ -42,6 +42,7 @@ class Translations extends Component
         }
 
         $translations = array_merge($phptranslations, $jsontranslations);
+
         return view('components.translations',[
             'translations' => $translations
         ]);
