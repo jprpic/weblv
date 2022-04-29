@@ -4,7 +4,6 @@ import BreezeButton from '@/Components/Button.vue';
 import BreezeCheckbox from '@/Components/Checkbox.vue';
 import BreezeInput from '@/Components/Input.vue';
 import BreezeLabel from '@/Components/Label.vue';
-import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
 import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
 
 defineProps({
@@ -40,7 +39,7 @@ const submit = () => {
 
                         <form @submit.prevent="submit">
                             <div>
-                                <BreezeLabel for="name" value="Name" />
+                                <BreezeLabel for="name" value={{__('Name')}} />
                                 <BreezeInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autofocus />
                             </div>
 

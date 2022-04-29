@@ -5,12 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8e9a2f03-75f1-48f5-bd07-18543f37b63a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../LV5/radovi/resources/js/Pages/Create.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/LV3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/LV3.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LV5/radovi/lang/en/task_create.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LV5/radovi/lang/hr/task_create.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../LV5/radovi/app/Http/Controllers/TeacherController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../LV5/radovi/app/Http/Controllers/TeacherController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LV5/radovi/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/../LV5/radovi/public/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../LV5/radovi/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/../LV5/radovi/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LV5/radovi/resources/js/Layouts/Authenticated.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../LV5/radovi/resources/js/Layouts/Authenticated.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LV5/radovi/resources/js/Pages/Create.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../LV5/radovi/resources/js/Pages/Create.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../LV5/radovi/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/../LV5/radovi/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
