@@ -28,7 +28,7 @@ const submit = () => {
     <BreezeAuthenticatedLayout :role="role">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __("name_eng") }}
+                {{ __("create") }}
             </h2>
         </template>
 

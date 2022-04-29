@@ -1,6 +1,6 @@
 <?php
 return [
-
+    'create' => 'Create',
     'name' => 'Name',
     'name_eng' => 'Name (English)',
     'description' => 'Description',
