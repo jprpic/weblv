@@ -15,11 +15,8 @@ app.use(morgan('tiny'));
 // parse request to body-parser
 app.use(bodyparser.urlencoded({extended: true}));
 
+// load routes
+app.use('/', require('./server/routes/router'));
 
-
-
-app.get('/', (req, res) => {
-    res.send('Crud App!')
-});
 
 app.listen(PORT, ()=>{console.log(`Server is running on http://localhost:${PORT}`)});

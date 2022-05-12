@@ -53,11 +53,11 @@ export default {
         },
         redirect(){
             this.$router.push({name: 'update', params: { 
-                id: this.id, 
+                id: this.id,
                 name: this.name,
                 price: this.price,
                 tasks_done: this.tasks_done,
-                description: this.description,
+                description: this.description
             }});
         }
     }
