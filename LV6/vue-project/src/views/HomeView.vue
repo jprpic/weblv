@@ -16,6 +16,7 @@ export default {
     return{
       projects : [
         {
+          id: 1,
           name: 'Lv5',
           description: 'Laboratorijska vjezba 5',
           price: 500,
@@ -24,6 +25,7 @@ export default {
           updated_at: new Date(Date.now())
         },
         {
+          id: 2,
           name: 'Lv6',
           description: 'Laboratorijska vjezba 6 aaaaaaaa aaa aaaaaa aaaaa aaaaaaaa aaaaaaaaa aaaaaaa aaaaaaa aaaaaaaaaaaaaaa aaaaaaaaa',
           price: 100,

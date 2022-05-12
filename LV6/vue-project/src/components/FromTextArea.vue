@@ -6,7 +6,7 @@ export default {
 }
 </script>
 
-<template><textarea class="rounded-md w-full" :value="modelValue" @input="$emit('update:modelValue', $event.target.value)" ref="input"></textarea></template>
+<template><textarea class="rounded-md w-full p-1" :value="modelValue" @input="$emit('update:modelValue', $event.target.value)" ref="input"></textarea></template>
 
 
 <style scoped>
