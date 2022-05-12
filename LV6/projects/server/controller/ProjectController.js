@@ -13,7 +13,7 @@ exports.find = (req,res)=>{
                         message: `Project with ${id} not found!`
                     });
                 }else{
-                    res.send(data);
+                    res.json(data);
                 }
             })
             .catch(err => {
@@ -22,7 +22,7 @@ exports.find = (req,res)=>{
     }else{
         Projectdb.find()
             .then(project => {
-                res.send(project)
+                res.json(project)
             })
             .catch(err =>{
                 res.status(500).send({ message: err.message || "Error occurred while retrieving project information!"});

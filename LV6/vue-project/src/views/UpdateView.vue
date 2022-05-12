@@ -7,14 +7,27 @@ import TheButton from "../components/TheButton.vue";
 export default {
   components: { FormInput, FormLabel, FromTextArea, TheButton },
   props:{
+      id: String,
       name: String,
       price: Number,
       tasks_done: String,
       description: String
   },
   methods:{
-      submit(){
-          console.log("Submit!");
+      async submit(){
+          await this.axios.put(`http://localhost:4000/api/projects/${this.id}`, {
+                name: this.name,
+                price: this.price,
+                tasks_done: this.tasks_done,
+                description: this.description
+            })
+            .then(response => {
+                console.log(response);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+            this.$router.push('/');
       }
   }
 }
@@ -40,7 +53,7 @@ export default {
 
             <div class="mt-2">
                 <FormLabel class="mb-1" value="Description"/>
-                <FromTextArea rows="5" v-model="description" />
+                <FromTextArea rows="3" v-model="description" />
             </div>
 
             <div class="grid justify-items-stretch mt-2">

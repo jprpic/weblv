@@ -9,14 +9,24 @@ export default {
   data() {
     return {
       name: '',
-      price: 0,
-      tasks_done: '',
+      price: null,
       description: ''
     }
   },
   methods:{
-      submit(){
-          console.log("Submit!");
+      async submit(){
+          await this.axios.post("http://localhost:4000/api/projects", {
+                name: this.name,
+                price: this.price,
+                description: this.description
+            })
+            .then(response => {
+                console.log(response);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+            this.$router.push('/');
       }
   }
 }
@@ -27,17 +37,17 @@ export default {
         <form @submit.prevent="submit" class="p-4">
             <div>
                 <FormLabel value="Name"/>
-                <FormInput v-model="name" id="name" name="name" type="text"/> {{ name }}
+                <FormInput v-model="name" id="name" name="name" type="text"/>
             </div>
             
             <div class="mt-2">
                 <FormLabel value="Price"/>
-                <FormInput v-model="price" id="price" name="price" type="number"/> {{ price }}
+                <FormInput v-model="price" id="price" name="price" type="number"/>
             </div>
 
             <div class="mt-2">
                 <FormLabel value="Description"/>
-                <FromTextArea rows="5" v-model="description" /> {{ description }}
+                <FromTextArea rows="3" v-model="description" />
             </div>
 
             <div class="grid justify-items-stretch mt-2">
@@ -45,7 +55,6 @@ export default {
                     <TheButton>Submit</TheButton>
                 </div>
             </div>
-            
         </form>
     </div>
 </template>

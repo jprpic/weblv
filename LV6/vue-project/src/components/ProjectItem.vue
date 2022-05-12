@@ -2,7 +2,7 @@
 import TheButton from './TheButton.vue';
 import { RouterLink } from 'vue-router';
 const props = defineProps({
-    id: Number,
+    id: String,
     name: String,
     price: Number,
     tasks_done: String,
@@ -25,7 +25,7 @@ const props = defineProps({
                 <p><span>Tasks done:&nbsp;</span> {{ tasks_done }}</p>
                 <p><span>Description:&nbsp;</span> {{ description }}</p>
             </div>
-            <div class="flex flex-col flex-none min-w-fit w-3/12 px-2">
+            <div class="flex flex-col flex-none min-w-fit w-2/12 px-2">
                 <div>
                     <span>Created at:&nbsp;</span> {{ dateToString(created_at) }}
                 </div>
@@ -34,7 +34,7 @@ const props = defineProps({
                 </div>
                 <div class="flex justify-between mt-2">
                     <TheButton type="button" @click="redirect()"> Edit</TheButton>
-                    <TheButton> Remove</TheButton>
+                    <TheButton type="button" @click="remove()"> Delete</TheButton>
                 </div>
                 
             </div>
@@ -47,6 +47,7 @@ const props = defineProps({
 
 <script>
 export default {
+    emits:['projectRemove'],
     methods:{
         dateToString(date){
             return `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`;
@@ -59,6 +60,16 @@ export default {
                 tasks_done: this.tasks_done,
                 description: this.description
             }});
+        },
+        remove(){
+            this.axios.delete(`http://localhost:4000/api/projects/${this.id}`)
+                .then(res => {
+                    console.log(res)
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+            this.$emit('projectRemove', this.id);
         }
     }
 }

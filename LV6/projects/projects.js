@@ -19,6 +19,7 @@ connectDB();
 
 // parse request to body-parser
 app.use(bodyparser.urlencoded({extended: true}))
+app.use(bodyparser.json());
 
 // global allow cors
 app.use(cors());

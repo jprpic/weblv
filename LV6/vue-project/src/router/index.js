@@ -20,11 +20,12 @@ const router = createRouter({
     {
       path: "/update/:id",
       name: "update",
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import("../views/UpdateView.vue"),
-      props: true
+      props(route) {
+        const props = { ...route.params }
+        props.price = +props.price
+        return props
+      }
     },
   ],
 });

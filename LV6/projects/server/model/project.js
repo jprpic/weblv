@@ -9,7 +9,7 @@ var schema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    tasks_done: Array,
+    tasks_done: String,
     description: String,
     created_at: {
         type: Date,
