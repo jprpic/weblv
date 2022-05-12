@@ -16,7 +16,7 @@ defineProps({
 
 <style scoped>
 button{
-    background-color: #00a36d;
+    background-color: #008a5c;
 }
 button:hover{
     background-color: #006644;

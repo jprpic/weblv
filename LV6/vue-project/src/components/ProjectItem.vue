@@ -1,4 +1,5 @@
 <script setup>
+import TheButton from './TheButton.vue';
     const props = defineProps({
         name: String,
         description: String,
@@ -7,6 +8,7 @@
         created_at: Date,
         updated_at: Date
     })
+
 </script>
 
 <template>
@@ -14,23 +16,30 @@
         <div class="flex justify-between">
             <div class="flex flex-col">
                 <div>
-                    <span class="span-prop">Name:&nbsp;</span> {{ name }}
+                    <span>Name:&nbsp;</span> {{ name }}
                 </div>
                 <div>
-                    <span class="span-prop">Price:&nbsp;</span> {{ price }}
+                    <span>Price:&nbsp;</span> {{ price }}
                 </div>
+                <p><span>Tasks done:&nbsp;</span> {{ tasks_done }}</p>
+                <p><span>Description:&nbsp;</span> {{ description }}</p>
             </div>
-            <div class="flex flex-col">
+            <div class="flex flex-col flex-none min-w-fit">
                 <div>
-                    <span class="span-prop">Created at:&nbsp;</span> {{ dateToString(created_at) }}
+                    <span>Created at:&nbsp;</span> {{ dateToString(created_at) }}
                 </div>
                 <div>
-                    <span class="span-prop">Updated at:&nbsp;</span> {{ dateToString(updated_at) }}
+                    <span>Updated at:&nbsp;</span> {{ dateToString(updated_at) }}
                 </div>
+                <div class="self-end flex justify-between mt-2">
+                    <TheButton class="mr-4"> Edit</TheButton>
+                    <TheButton> Remove</TheButton>
+                </div>
+                
+                
             </div>
         </div>
-        <p><span class="span-prop">Tasks done:&nbsp;</span> {{ tasks_done }}</p>
-        <p ><span class="span-prop">Description:&nbsp;</span> {{ description }}</p>
+        
     </div>
     
 
@@ -47,7 +56,7 @@ export default {
 </script>
 
 <style scoped>
-.span-prop{
+span{
     font-weight: bold;
     color: #18A576;
 }

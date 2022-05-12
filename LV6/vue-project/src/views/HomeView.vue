@@ -25,7 +25,7 @@ export default {
         },
         {
           name: 'Lv6',
-          description: 'Laboratorijska vjezba 6',
+          description: 'Laboratorijska vjezba 6 aaaaaaaa aaa aaaaaa aaaaa aaaaaaaa aaaaaaaaa aaaaaaa aaaaaaa aaaaaaaaaaaaaaa aaaaaaaaa',
           price: 100,
           tasks_done: 'Connection',
           created_at: new Date(Date.now()),
