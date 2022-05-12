@@ -1,6 +1,5 @@
 <script setup>
 import TheButton from './TheButton.vue';
-import { RouterLink } from 'vue-router';
 const props = defineProps({
     id: String,
     name: String,
@@ -8,7 +7,8 @@ const props = defineProps({
     tasks_done: String,
     description: String,
     created_at: Date,
-    updated_at: Date
+    updated_at: Date,
+    members: String
 })
 </script>
 
@@ -23,6 +23,7 @@ const props = defineProps({
                     <span>Price:&nbsp;</span> {{ price }}
                 </div>
                 <p><span>Tasks done:&nbsp;</span> {{ tasks_done }}</p>
+                <p><span>Project members:&nbsp;</span> {{ members }}</p>
                 <p><span>Description:&nbsp;</span> {{ description }}</p>
             </div>
             <div class="flex flex-col flex-none min-w-fit w-2/12 px-2">
@@ -50,7 +51,7 @@ export default {
     emits:['projectRemove'],
     methods:{
         dateToString(date){
-            return `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`;
+            return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
         },
         redirect(){
             this.$router.push({name: 'update', params: { 
@@ -58,6 +59,7 @@ export default {
                 name: this.name,
                 price: this.price,
                 tasks_done: this.tasks_done,
+                members: this.members,
                 description: this.description
             }});
         },

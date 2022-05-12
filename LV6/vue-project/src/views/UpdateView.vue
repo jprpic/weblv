@@ -11,6 +11,7 @@ export default {
       name: String,
       price: Number,
       tasks_done: String,
+      members: String,
       description: String
   },
   methods:{
@@ -19,6 +20,7 @@ export default {
                 name: this.name,
                 price: this.price,
                 tasks_done: this.tasks_done,
+                members: this.members,
                 description: this.description
             })
             .then(response => {
@@ -49,6 +51,11 @@ export default {
             <div class="mt-2">
                 <FormLabel value="Tasks Done"/>
                 <FormInput v-model="tasks_done" id="tasks_done" name="tasks_done" type="text"/>
+            </div>
+
+            <div class="mt-2">
+                <FormLabel value="Project Members"/>
+                <FormInput v-model="members" id="members" name="members" type="text"/>
             </div>
 
             <div class="mt-2">

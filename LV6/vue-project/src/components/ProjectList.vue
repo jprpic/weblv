@@ -27,6 +27,7 @@ export default{
             :description="project.description"
             :created_at = "new Date(project.created_at)"
             :updated_at = "new Date(project.updated_at)"
+            :members = "project.members"
             @project-remove="remove"
             />
         </div>

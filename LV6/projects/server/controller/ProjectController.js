@@ -45,7 +45,8 @@ exports.create = (req,res)=>{
         tasks_done: '',
         description: req.body.description,
         created_at: new Date(Date.now()),
-        updated_at: new Date(Date.now())
+        updated_at: new Date(Date.now()),
+        members: '',
     });
 
 

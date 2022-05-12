@@ -18,7 +18,8 @@ var schema = new mongoose.Schema({
     updated_at: {
         type: Date,
         required: true
-    }
+    },
+    members: String
 })
 
 const Projectdb = mongoose.model('projectdb', schema);
