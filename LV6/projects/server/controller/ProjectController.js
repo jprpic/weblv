@@ -2,13 +2,32 @@ var Projectdb = require('../model/project');
 
 // Retrieve and return all projects / retrieve and return a single project
 exports.find = (req,res)=>{
-    Projectdb.find()
-        .then(project => {
-            res.send(project)
-        })
-        .catch(err =>{
-            res.status(500).send({ message: err.message || "Error occurred while retrieving project information!"});
-        })
+
+    if(req.query.id){
+        const id = req.query.id;
+
+        Projectdb.findById(id)
+            .then(data=>{
+                if(!data){
+                    res.status(404).send({
+                        message: `Project with ${id} not found!`
+                    });
+                }else{
+                    res.send(data);
+                }
+            })
+            .catch(err => {
+                res.status(500).send({ message: `Error retrieving project with id ${id}`});
+            })
+    }else{
+        Projectdb.find()
+            .then(project => {
+                res.send(project)
+            })
+            .catch(err =>{
+                res.status(500).send({ message: err.message || "Error occurred while retrieving project information!"});
+            })
+    }
 }
 
 // Create and save a new project
