@@ -16,7 +16,7 @@ export default {
   },
   methods:{
       submit(){
-          console.log('Submit');
+          console.log("Submit!");
       }
   }
 }
@@ -42,9 +42,7 @@ export default {
 
             <div class="grid justify-items-stretch mt-2">
                 <div class="justify-self-end">
-                    <TheButton>
-                        Submit
-                    </TheButton>
+                    <TheButton>Submit</TheButton>
                 </div>
             </div>
             
