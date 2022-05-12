@@ -1,14 +1,25 @@
-const express = require('express')
-const cors = require('cors')
-const app = express()
-const port = 4000
+const express = require('express');
+const dotenv = require('dotenv');
+const morgan = require('morgan');
+const bodyparser = require("body-parser");
+const path = require('path');
 
-app.use(cors())
+const app = express();
+
+dotenv.config({path : 'config.env'});
+const PORT = process.env.PORT || 8080;
+
+// log requests
+app.use(morgan('tiny'));
+
+// parse request to body-parser
+app.use(bodyparser.urlencoded({extended: true}));
+
+
+
 
 app.get('/', (req, res) => {
-  res.send('Hello World!');
-})
+    res.send('Crud App!')
+});
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+app.listen(PORT, ()=>{console.log(`Server is running on http://localhost:${PORT}`)});

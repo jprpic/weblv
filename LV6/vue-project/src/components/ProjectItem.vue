@@ -10,7 +10,7 @@
 </script>
 
 <template>
-    <div class="border-[#18A576] border rounded-lg p-3 project-item">
+    <div class="rounded-lg p-3 project-item">
         <div class="flex justify-between">
             <div class="flex flex-col">
                 <div>
