@@ -4,7 +4,7 @@ import ProjectList from '../components/ProjectList.vue';
 
 <template>
   <div>
-    {{ data }}
+    {{ response }}
   </div>
   <ProjectList :projects="projects"></ProjectList>
 </template>
@@ -32,13 +32,13 @@ export default {
           updated_at: new Date(Date.now())
         },
       ],
-      data : ''
+      response : ''
     }
   },
   async mounted() {
     await this.axios.get(
       "http://localhost:4000/"
-    ).then(response => (this.data = response.data.data))
+    ).then(response => (this.response = response.data))
   },
 }
 </script>

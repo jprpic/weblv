@@ -10,8 +10,8 @@
 </script>
 
 <template>
-    <div class="border-[#18A576] border rounded-md p-3">
-        <div class="flex justify-between ">
+    <div class="border-[#18A576] border rounded-lg p-3 project-item">
+        <div class="flex justify-between">
             <div class="flex flex-col">
                 <div>
                     <span class="span-prop">Name:&nbsp;</span> {{ name }}
@@ -50,5 +50,8 @@ export default {
 .span-prop{
     font-weight: bold;
     color: #18A576;
+}
+.project-item{
+    background-color: var(--vt-c-divider-light-1);
 }
 </style>

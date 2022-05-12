@@ -7,7 +7,7 @@ const props = defineProps({
 
 <template>
     <div class="w-2/3">
-        <div v-for="project in projects" class="my-2">
+        <div v-for="project in projects" class="mb-4">
             <ProjectItem v-bind="project"/>
         </div>
     </div>
