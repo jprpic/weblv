@@ -8,6 +8,7 @@ const router = createRouter({
       path: "/",
       name: "home",
       component: HomeView,
+      props: true,
     },
     {
       path: "/create",
@@ -26,6 +27,16 @@ const router = createRouter({
         props.price = +props.price
         return props
       }
+    },
+    {
+      path: "/login",
+      name: "login",
+      component: () => import("../views/auth/LoginView.vue"),
+    },
+    {
+      path: "/register",
+      name: "register",
+      component: () => import("../views/auth/RegisterView.vue"),
     },
   ],
 });

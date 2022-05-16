@@ -1,5 +1,4 @@
 <script setup>
-import { render } from 'vue';
 import ProjectList from '../components/ProjectList.vue';
 </script>
 

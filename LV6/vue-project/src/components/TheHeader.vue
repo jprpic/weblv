@@ -1,12 +1,17 @@
 <script setup>
-import { RouterLink } from "vue-router";
+import UnauthorizedLayout from "../layouts/UnauthorizedLayout.vue";
+import AuthorizedLayout from "../layouts/AuthorizedLayout.vue";
+
+const props = defineProps({
+    auth: Boolean  
+})
 </script>
 
 <template>
-    <header>
-        <nav>
-            <RouterLink to="/">Home</RouterLink>
-            <RouterLink to="/create">Create</RouterLink>
-        </nav>
-  </header>
+    <div v-if="!auth">
+        <UnauthorizedLayout />
+    </div>
+    <div v-else>
+        <AuthorizedLayout />
+    </div>
 </template>

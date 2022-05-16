@@ -6,7 +6,7 @@ import TheHeader from "@/components/TheHeader.vue";
 <template>
   <div class="grid justify-items-center">
     <div class="pb-4">
-      <TheHeader />
+      <TheHeader :auth="auth"/>
     </div>
 
     <RouterView />
@@ -14,6 +14,16 @@ import TheHeader from "@/components/TheHeader.vue";
 
   
 </template>
+
+<script>
+export default{
+  props:{
+    auth: Boolean
+  }
+}
+
+</script>
+
 
 <style>
 @import "@/assets/base.css";
@@ -33,6 +43,12 @@ import TheHeader from "@/components/TheHeader.vue";
 header {
   line-height: 1.5;
   max-height: 100vh;
+}
+
+form{
+    background-color: var(--vt-c-divider-light-1);
+    border-radius: 0.5rem;
+    padding: 1rem;
 }
 
 a,

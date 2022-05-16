@@ -5,17 +5,6 @@ const props = defineProps({
 })
 </script>
 
-<script>
-export default{
-    emits:['projectRemove'],
-    methods:{
-        remove(id){
-            this.$emit('projectRemove', id);
-        }
-    }
-}
-</script>
-
 <template>
     <div class="w-3/4">
         <div v-for="project in projects" class="mb-4" :key="project.id">
@@ -33,3 +22,14 @@ export default{
         </div>
     </div>
 </template>
+
+<script>
+export default{
+    emits:['projectRemove'],
+    methods:{
+        remove(id){
+            this.$emit('projectRemove', id);
+        }
+    }
+}
+</script>
