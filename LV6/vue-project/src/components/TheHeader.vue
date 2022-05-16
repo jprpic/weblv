@@ -1,17 +1,13 @@
 <script setup>
-import UnauthorizedLayout from "../layouts/UnauthorizedLayout.vue";
+import GuestLayout from "../layouts/GuestLayout.vue";
 import AuthorizedLayout from "../layouts/AuthorizedLayout.vue";
-
-const props = defineProps({
-    auth: Boolean  
-})
 </script>
 
 <template>
-    <div v-if="!auth">
-        <UnauthorizedLayout />
+    <div v-if="this.$store.state.auth">
+        <AuthorizedLayout />
     </div>
     <div v-else>
-        <AuthorizedLayout />
+        <GuestLayout />
     </div>
 </template>

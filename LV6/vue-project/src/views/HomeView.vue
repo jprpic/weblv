@@ -3,28 +3,16 @@ import ProjectList from '../components/ProjectList.vue';
 </script>
 
 <template>
-  <ProjectList :projects="projects" @project-remove="deleteProject"></ProjectList>
+  <ProjectList :projects="projects"></ProjectList>
 </template>
 
 <script>
 export default {
   name: "HomeView.vue",
-  data(){
-    return{
-      projects : []
+  computed:{
+    projects(){
+      return this.$store.state.projects;
     }
   },
-  async mounted() {
-    await this.axios.get(
-      "http://localhost:4000/api/projects"
-    ).then(response => {
-      this.projects = response.data})
-  },
-  methods:{
-    deleteProject(id){
-      this.projects = this.projects.filter(item => item._id !== id);
-      console.log(this.projects);
-    }
-  }
 }
 </script>

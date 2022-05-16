@@ -38,7 +38,8 @@ export default{
     },
     methods:{
         login(){
-            this.$router.push('/', { auth: true });
+            this.$store.dispatch('login');
+            this.$router.push('/');
         }
     }
 }

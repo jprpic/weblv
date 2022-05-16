@@ -42,19 +42,13 @@ export default {
     }
   },
   methods:{
-      async submit(){
-          await this.axios.post("http://localhost:4000/api/projects", {
-                name: this.name,
-                price: this.price,
-                description: this.description
-            })
-            .then(response => {
-                console.log(response);
-            })
-            .catch(err => {
-                console.log(err);
-            });
-            this.$router.push('/');
+      submit(){
+        this.$store.dispatch('createProject', {
+            name: this.name,
+            price: this.price,
+            description: this.description
+        })
+        this.$router.push('/');
       }
   }
 }

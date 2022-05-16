@@ -48,7 +48,6 @@ const props = defineProps({
 
 <script>
 export default {
-    emits:['projectRemove'],
     methods:{
         dateToString(date){
             return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
@@ -64,14 +63,7 @@ export default {
             }});
         },
         remove(){
-            this.axios.delete(`http://localhost:4000/api/projects/${this.id}`)
-                .then(res => {
-                    console.log(res)
-                })
-                .catch(err => {
-                    console.log(err)
-                })
-            this.$emit('projectRemove', this.id);
+            this.$store.dispatch('deleteProject', this.id)
         }
     }
 }

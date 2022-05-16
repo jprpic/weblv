@@ -1,29 +1,17 @@
 <script setup>
-import { RouterLink, RouterView } from "vue-router";
+import { RouterView } from "vue-router";
 import TheHeader from "@/components/TheHeader.vue";
 </script>
 
 <template>
   <div class="grid justify-items-center">
     <div class="pb-4">
-      <TheHeader :auth="auth"/>
+      <TheHeader/>
     </div>
-
+    
     <RouterView />
   </div>
-
-  
 </template>
-
-<script>
-export default{
-  props:{
-    auth: Boolean
-  }
-}
-
-</script>
-
 
 <style>
 @import "@/assets/base.css";

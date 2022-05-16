@@ -53,21 +53,16 @@ export default {
       description: String
   },
   methods:{
-      async submit(){
-          await this.axios.put(`http://localhost:4000/api/projects/${this.id}`, {
-                name: this.name,
-                price: this.price,
-                tasks_done: this.tasks_done,
-                members: this.members,
-                description: this.description
-            })
-            .then(response => {
-                console.log(response);
-            })
-            .catch(err => {
-                console.log(err);
-            });
-            this.$router.push('/');
+      submit(){
+        this.$store.dispatch('updateProject', {
+            id: this.id,
+            name: this.name,
+            price: this.price,
+            tasks_done: this.tasks_done,
+            members: this.members,
+            description: this.description
+        });
+        this.$router.push('/');
       }
   }
 }
