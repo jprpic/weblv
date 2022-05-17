@@ -2,21 +2,15 @@ const { genPassword } = require("../database/passwordUtils");
 const User = require("../model/user");
 
 exports.login = (req, res) => {
-    // if(!req.user){
-    //     res.status(401).send({message: 'Unauthorized'});
-    // }
-    // res.cookie('session', req.user.id , { signed: true, expires: new Date(Date.now() + 3600), httpOnly: false});
-    // res.status(200).json({msg:'Cookie has been set'});
-    res.status(200).json({user: req.user.id, msg: 'logged in'});
+    res.status(200).json({ user: {id: req.user.id, username: req.user.username}, msg: 'Successfully logged in!'});
 }
 
 exports.user = (req, res) => {
-    console.log(req.session);
     console.log(req.user);
     if(req.isAuthenticated()){
-        res.send('You are authenticated');
+        res.status(200).json( { id: req.user.id, username: req.user.username} );
     }else{
-        res.send('Unauthorized');
+        res.status(401).send('Unauthorized');
     }
 }
 

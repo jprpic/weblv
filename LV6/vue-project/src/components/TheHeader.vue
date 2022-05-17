@@ -4,7 +4,7 @@ import AuthorizedLayout from "../layouts/AuthorizedLayout.vue";
 </script>
 
 <template>
-    <div v-if="this.$store.state.auth">
+    <div v-if="this.$store.getters.auth">
         <AuthorizedLayout />
     </div>
     <div v-else>

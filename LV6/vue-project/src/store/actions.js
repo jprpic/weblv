@@ -2,8 +2,8 @@ import axios from "axios"
 
 const actions = {
     // AUTH
-    login(context) {
-      context.commit('login')
+    login(context, user) {
+      context.commit('login', user)
       context.dispatch('readProjects');
     },
     logout(context) {

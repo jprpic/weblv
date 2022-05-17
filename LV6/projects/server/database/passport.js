@@ -25,7 +25,7 @@ const verifyCallback = (username, password, done) => {
 passport.use(new LocalStrategy(verifyCallback));
 
 // passport.serializeUser((user, done) => {
-//     done(null, user.id)
+//     done(null, { id: user.id, username: user.username } )
 // });
 
 // passport.deserializeUser((userId, done) => {

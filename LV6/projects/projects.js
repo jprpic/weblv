@@ -28,14 +28,13 @@ app.use(bodyparser.json());
 
 const corsOptions ={
     origin:'http://localhost:3000', 
-    credentials:true,            //access-control-allow-credentials:true
+    credentials: true,            //access-control-allow-credentials:true
     optionSuccessStatus:200
 }
 
-// global allow cors
+
+// // global allow cors
 app.use(cors(corsOptions));
-
-
 const sessionStore = MongoStore.create({ mongoUrl: process.env.MONGO_URI, dbName: 'projects' })
 
 app.use(session({
@@ -44,15 +43,14 @@ app.use(session({
     saveUninitialized: true,
     store: sessionStore,
     cookie: {
-        secure: true,
-        httpOnly: false,
-        sameSite: 'none',
+        //secure: true,
+        //httpOnly: false,
+        //sameSite: 'none',
         maxAge: 1000 * 60 * 10
     }
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-
 
 // load routes
 app.use('/', require('./server/routes/router'))

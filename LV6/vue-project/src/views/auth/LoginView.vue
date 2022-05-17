@@ -42,9 +42,8 @@ export default{
             await axios.post('http://localhost:4000/api/login',{
                 username: this.username,
                 password: this.password
-            },{ withCredentials: true }).then((res) => {
-                console.log(res);
-                this.$store.dispatch('login');
+            }).then((res) => {
+                this.$store.dispatch('login', res.data.user);
                 this.$router.push('/');
             })
             .catch(err => {
@@ -52,9 +51,6 @@ export default{
             })
         }
     },
-    created(){
-
-    }
 }
 
 </script>
