@@ -5,6 +5,7 @@ import router from "./router/index";
 import './index.css'
 import VueAxios from "vue-axios";
 import axios from "axios";
+axios.defaults.withCredentials = true
 
 const app = createApp(App);
 

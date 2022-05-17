@@ -21,14 +21,3 @@ const props = defineProps({
         </div>
     </div>
 </template>
-
-<script>
-export default{
-    emits:['projectRemove'],
-    methods:{
-        remove(id){
-            this.$emit('projectRemove', id);
-        }
-    }
-}
-</script>

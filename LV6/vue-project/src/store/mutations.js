@@ -1,9 +1,13 @@
 const mutations = {
-    login (state) {
-        state.auth = true;
+    login (state, user) {
+        state.user.auth = true;
+        state.user.id = user.id;
+        state.user.username = user.username
     },
     logout(state){
-        state.auth = false;
+        state.user.auth = false;
+        state.user.id = null;
+        state.user.username = null
     },
     setProjects(state, projects){
       state.projects = projects;

@@ -27,6 +27,7 @@ import FormInput from "@/components/FormInput.vue";
 import FormLabel from "@/components/FormLabel.vue";
 import FromTextArea from "@/components/FromTextArea.vue";
 import TheButton from "@/components/TheButton.vue";
+import axios from "axios";
 
 export default{
     components: { FormInput, FormLabel, FromTextArea, TheButton },
@@ -37,11 +38,19 @@ export default{
         }
     },
     methods:{
-        login(){
-            this.$store.dispatch('login');
-            this.$router.push('/');
+        async login(){
+            await axios.post('http://localhost:4000/api/login',{
+                username: this.username,
+                password: this.password
+            }).then((res) => {
+                this.$store.dispatch('login', res.data.user);
+                this.$router.push('/');
+            })
+            .catch(err => {
+                console.log(err);
+            })
         }
-    }
+    },
 }
 
 </script>

@@ -3,27 +3,27 @@
         <form @submit.prevent="submit">
             <div>
                 <FormLabel value="Name"/>
-                <FormInput v-model="name" id="name" name="name" type="text"/>
+                <FormInput v-model="project.name" id="name" name="name" type="text"/>
             </div>
             
             <div class="mt-2">
                 <FormLabel value="Price"/>
-                <FormInput v-model="price" id="price" name="price" type="number"/>
+                <FormInput v-model="project.price" id="price" name="price" type="number"/>
             </div>
 
             <div class="mt-2">
                 <FormLabel value="Tasks Done"/>
-                <FormInput v-model="tasks_done" id="tasks_done" name="tasks_done" type="text"/>
+                <FormInput v-model="project.tasks_done" id="tasks_done" name="tasks_done" type="text"/>
             </div>
 
             <div class="mt-2">
                 <FormLabel value="Project Members"/>
-                <FormInput v-model="members" id="members" name="members" type="text"/>
+                <FormInput v-model="project.members" id="members" name="members" type="text"/>
             </div>
 
             <div class="mt-2">
                 <FormLabel class="mb-1" value="Description"/>
-                <FromTextArea rows="3" v-model="description" />
+                <FromTextArea rows="3" v-model="project.description" />
             </div>
 
             <div class="grid justify-items-stretch mt-2">
@@ -44,27 +44,24 @@ import TheButton from "../components/TheButton.vue";
 
 export default {
   components: { FormInput, FormLabel, FromTextArea, TheButton },
-  props:{
-      id: String,
-      name: String,
-      price: Number,
-      tasks_done: String,
-      members: String,
-      description: String
+  computed:{
+      project(){
+          return this.$store.getters.project(this.$route.params.id) ?? {};
+      }
   },
   methods:{
       submit(){
         this.$store.dispatch('updateProject', {
-            id: this.id,
-            name: this.name,
-            price: this.price,
-            tasks_done: this.tasks_done,
-            members: this.members,
-            description: this.description
+            id: this.project._id,
+            name: this.project.name,
+            price: this.project.price,
+            tasks_done: this.project.tasks_done,
+            members: this.project.members,
+            description: this.project.description
         });
         this.$router.push('/');
       }
-  }
+  },
 }
 </script>
 

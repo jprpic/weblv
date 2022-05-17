@@ -34,7 +34,7 @@ const props = defineProps({
                     <span>Updated at:&nbsp;</span> {{ dateToString(updated_at) }}
                 </div>
                 <div class="flex justify-between mt-2">
-                    <TheButton type="button" @click="redirect()"> Edit</TheButton>
+                    <TheButton type="button" @click="edit()"> Edit</TheButton>
                     <TheButton type="button" @click="remove()"> Delete</TheButton>
                 </div>
                 
@@ -52,19 +52,9 @@ export default {
         dateToString(date){
             return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
         },
-        redirect(){
-            this.$router.push({name: 'update', params: { 
-                id: this.id,
-                name: this.name,
-                price: this.price,
-                tasks_done: this.tasks_done,
-                members: this.members,
-                description: this.description
-            }});
+        edit(){
+            this.$router.push({name: 'update', params: {id: this.id}});
         },
-        remove(){
-            this.$store.dispatch('deleteProject', this.id)
-        }
     }
 }
 </script>

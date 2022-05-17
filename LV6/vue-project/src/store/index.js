@@ -2,19 +2,20 @@ import Vuex from 'vuex'
 import axios from "axios";
 import actions from './actions'
 import mutations from './mutations';
+import getters from './getters';
 
 const store = new Vuex.Store({
     state () {
       return {
-        auth: false,
+        user: {
+          auth: null,
+          username: null,
+          id: null
+        },
         projects: []
       }
     },
-    getter:{
-      projects(state){
-        return state.projects;
-      }
-    },
+    getters: getters,
     mutations: mutations,
     actions: actions
 })
