@@ -9,7 +9,7 @@ const props = defineProps({
     description: String,
     created_at: Date,
     updated_at: Date,
-    members: String
+    members: Array
 })
 </script>
 
@@ -27,7 +27,13 @@ const props = defineProps({
                     <span>Owner:&nbsp;</span> {{ owner }}
                 </div>
                 <p><span>Tasks done:&nbsp;</span> {{ tasks_done }}</p>
-                <p><span>Project members:&nbsp;</span> {{ members }}</p>
+                <div class="flex">
+                    <span>Project members:&nbsp;</span>
+                        
+                    <div v-for="member in members" class="px-1">
+                        {{ member.username }}
+                    </div>
+                </div>
                 <p><span>Description:&nbsp;</span> {{ description }}</p>
             </div>
             <div class="flex flex-col flex-none min-w-fit w-2/12 px-2">

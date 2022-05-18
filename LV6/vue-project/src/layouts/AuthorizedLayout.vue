@@ -9,12 +9,13 @@ import { RouterLink } from "vue-router";
                 <nav>
                     <RouterLink to="/">Home</RouterLink>
                     <RouterLink to="/create">Create</RouterLink>
+                    <RouterLink to="/projects">Projects</RouterLink>
                 </nav>
             </header>  
         </div>
         <div>
             <span>
-                {{ this.$store.getters.username }}
+                {{ this.$store.getters.user.username }}
             </span>
         </div>
     </div>

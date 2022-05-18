@@ -17,7 +17,12 @@ export default {
   name: "HomeView.vue",
   computed:{
     projects(){
-      return this.$store.getters.projects;
+      const projects = this.$store.getters.projects;
+        const user = this.$store.getters.user;
+        if(user && projects){
+            return projects.filter(project => project.owner.id === user.id);
+        }
+        return {};
     }
   },
   methods:{

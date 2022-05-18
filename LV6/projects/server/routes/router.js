@@ -4,8 +4,7 @@ const route = express.Router();
 
 const projectController = require('../controller/ProjectController');
 const authController = require('../controller/AuthController');
-const res = require('express/lib/response');
-
+const userController = require('../controller/UserController');
 
 route.get('/', (req, res) => {
     console.log(req.user);
@@ -22,5 +21,7 @@ route.post('/api/login', passport.authenticate('local'), authController.login);
 route.get('/api/user', authController.user);
 route.get('/api/logout', authController.logout);
 route.post('/api/register', authController.register);
+
+route.get('/api/users', userController.users);
 
 module.exports = route;

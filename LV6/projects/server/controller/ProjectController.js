@@ -51,10 +51,10 @@ exports.create = (req,res)=>{
         created_at: new Date(Date.now()),
         updated_at: new Date(Date.now()),
         owner: {
-            id: req.user.id,
-            name: req.user.username
+            id: req.user._id,
+            username: req.user.username
         },
-        members: null,
+        members: [],
     });
 
     // save project in db

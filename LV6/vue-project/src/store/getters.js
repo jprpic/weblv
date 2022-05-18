@@ -2,14 +2,17 @@ const getters = {
     projects(state){
       return state.projects;
     },
+    project: (state) => (id) => {
+        return state.projects.find(x => x._id === id);
+    },
     auth(state){
       return state.user.auth;
     },
-    username(state){
-      return state.user.username;
+    user(state){
+      return state.user;
     },
-    project: (state) => (id) => {
-        return state.projects.find(x => x._id === id);
+    users(state){
+      return state.users;
     }
   }
 
