@@ -16,6 +16,7 @@ route.get('/api/projects', projectController.find);
 route.post('/api/projects', projectController.create);
 route.put('/api/projects/:id', projectController.update);
 route.delete('/api/projects/:id', projectController.delete);
+route.post('/api/archive/:id', projectController.archive)
 
 route.post('/api/login', passport.authenticate('local'), authController.login);
 route.get('/api/user', authController.user);

@@ -1,19 +1,20 @@
 <template>
     <div class="w-3/4 form-div">
         <form @submit.prevent="submit">
-            <div>
-                <FormLabel value="Name"/>
-                <FormInput v-model="project.name" id="name" name="name" type="text" :disabled="!isOwner"/>
-            </div>
-            
-            <div class="mt-2">
-                <FormLabel value="Price"/>
-                <FormInput v-model="project.price" id="price" name="price" type="number" :disabled="!isOwner"/>
-            </div>
-
-            <div class="mt-2">
-                <FormLabel value="Tasks Done"/>
-                <FormInput v-model="project.tasks_done" id="tasks_done" name="tasks_done" type="text"/>
+            <div class="flex justify-between">
+                <div class="w-full">
+                    <div>
+                        <FormLabel value="Name"/>
+                        <FormInput v-model="project.name" id="name" name="name" type="text" :disabled="!isOwner"/>
+                    </div>
+                    <div class="mt-2">
+                        <FormLabel value="Price"/>
+                        <FormInput v-model="project.price" id="price" name="price" type="number" :disabled="!isOwner"/>
+                    </div>
+                </div>
+                <div>
+                    <TheButton @click="archive()" class="m-2" type="button">Archive</TheButton>
+                </div>
             </div>
 
             <div class="mt-2">
@@ -25,11 +26,15 @@
                 </div>
                 <FormLabel>Add members</FormLabel>
                 <div class="flex">
-                <div v-for="user in nonMembers" class="pr-2 pt-1">
-                    <TheButton class="px-3" type="button" @click="changeMember(user)" :disabled="!isOwner">{{ user.username }}</TheButton>
+                    <div v-for="user in nonMembers" class="pr-2 pt-1">
+                        <TheButton class="px-3" type="button" @click="changeMember(user)" :disabled="!isOwner">{{ user.username }}</TheButton>
+                    </div>
                 </div>
-        </div>
-                
+            </div>
+
+            <div class="mt-2">
+                <FormLabel value="Tasks Done"/>
+                <FromTextArea v-model="project.tasks_done" id="tasks_done" name="tasks_done" type="text"/>
             </div>
 
             <div class="mt-2">
@@ -59,6 +64,7 @@ export default {
   components: { FormInput, FormLabel, FromTextArea, TheButton },
   computed:{
       project(){
+        // Get project by id from query param
         return this.$store.getters.project(this.$route.params.id) ?? {};
       },
       nonMembers(){
@@ -84,7 +90,12 @@ export default {
   methods:{
       submit(){
         this.update();
+        // Go to previous page
         this.$router.go(-1);
+      },
+      archive(){
+          this.$store.dispatch('archiveProject', this.project._id);
+          this.$router.push({name: 'archive'});
       },
       changeMember(user){
         // Get index of the user in project members

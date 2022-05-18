@@ -1,4 +1,4 @@
-var Projectdb = require('../model/project');
+const Projectdb = require('../model/project');
 
 // Retrieve and return all projects / retrieve and return a single project
 exports.find = (req,res)=>{
@@ -114,5 +114,38 @@ exports.delete = (req, res) => {
                 message: `Could not delete project with ${id}`
             })
         })
+}
+
+exports.archive = (req, res) => {
+    const id = req.params.id;
+
+    // Get project by id
+    Projectdb.findById(id)
+        .then(data => {
+            if(!data){
+                res.status(404).send({
+                    message: `Project with ${id} not found!`
+                });
+            }else{
+                data.finished_at = new Date(Date.now());
+                // Update the project with archived date
+                Projectdb.findByIdAndUpdate(id, data, { new: true })
+                    .then(data => {
+                        if(!data){
+                            res.status(404).send({ message: `Cannot update project with ${id}.`})
+                        }else{
+                            res.send(data);
+                        }
+                    })
+                    .catch(err => {
+                        res.status(500).send({message: "Invalid project information"});
+                    });
+            }
+        })
+        .catch(err => {
+            res.status(500).send({ message: `Error retrieving project with id ${id}`});
+        })
+
+    
 }
 

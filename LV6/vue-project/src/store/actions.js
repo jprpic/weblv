@@ -51,6 +51,15 @@ const actions = {
                 console.log(err)
             })
     },
+    async archiveProject(context, id){
+        await axios.post(`http://localhost:4000/api/archive/${id}`)
+            .then(res => {
+                context.commit('updateProject', res.data);
+                console.log(res.data);
+            }).catch(err => {
+                console.log(err)
+            })
+    },
     async readUsers(context){
         await axios.get('http://localhost:4000/api/users')
             .then(res => {

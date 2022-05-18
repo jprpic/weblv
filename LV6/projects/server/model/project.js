@@ -22,6 +22,10 @@ const projectSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
+    finished_at:{
+        type: Date,
+        required: false
+    },
     owner:{
         id: {
             type: String,
