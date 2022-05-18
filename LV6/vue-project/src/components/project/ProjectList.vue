@@ -12,6 +12,7 @@ const props = defineProps({
             :id="project._id"
             :name="project.name"
             :price="Number(project.price)"
+            :owner="project.owner.name"
             :tasks_done="project.tasks_done"
             :description="project.description"
             :created_at = "new Date(project.created_at)"

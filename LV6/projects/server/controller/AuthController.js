@@ -1,3 +1,4 @@
+const passport = require("passport");
 const { genPassword } = require("../database/passwordUtils");
 const User = require("../model/user");
 
@@ -6,7 +7,6 @@ exports.login = (req, res) => {
 }
 
 exports.user = (req, res) => {
-    console.log(req.user);
     if(req.isAuthenticated()){
         res.status(200).json( { id: req.user.id, username: req.user.username} );
     }else{
@@ -32,18 +32,35 @@ exports.register = (req, res) => {
         return;
     }
 
-    const saltHash = genPassword(req.body.password);
-    const newUser = new User({
-        username : req.body.username,
-        hash: saltHash.hash,
-        salt: saltHash.salt
-    })
+    const user = User.find({username: req.body.username})
+        .then(user => {
+            if(user.length){
+                return res.status(400).send({message:'User with this name already exists!'});
+            }
+            else{
+                const saltHash = genPassword(req.body.password);
+                const newUser = new User({
+                    username : req.body.username,
+                    hash: saltHash.hash,
+                    salt: saltHash.salt
+                })
 
-    newUser.save()
-        .then((user) => {
-            res.json(user)
+                newUser.save()
+                    .then((user) => {
+                        req.login(user, err =>{
+                            if(err){
+                                console.log(err);
+                            }
+                            return res.status(200).send({user: {id: user._id, username: user.username}, message: 'Successfully registered!'});
+                        })
+                    })
+                    .catch(err => {
+                        res.status(500).send({ message: `Error registering user!`});
+                    })
+            }
         })
         .catch(err => {
-            res.status(500).send({ message: `Error registering user!`});
-        })
+            console.log(err);
+        });
+
 }

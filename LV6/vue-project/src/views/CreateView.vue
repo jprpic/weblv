@@ -27,10 +27,10 @@
 
 
 <script>
-import FormInput from "../components/FormInput.vue";
-import FormLabel from "../components/FormLabel.vue";
-import FromTextArea from "../components/FromTextArea.vue";
-import TheButton from "../components/TheButton.vue";
+import FormInput from "@/components/form/FormInput.vue";
+import FormLabel from "@/components/form/FormLabel.vue";
+import FromTextArea from "@/components/form/FromTextArea.vue";
+import TheButton from "@/components/TheButton.vue";
 
 export default {
   components: { FormInput, FormLabel, FromTextArea, TheButton },

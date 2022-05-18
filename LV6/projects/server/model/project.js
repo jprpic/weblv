@@ -10,7 +10,10 @@ const projectSchema = new mongoose.Schema({
         required: true
     },
     tasks_done: String,
-    description: String,
+    description: {
+        type: String,
+        required: true
+    },
     created_at: {
         type: Date,
         required: true
@@ -19,9 +22,30 @@ const projectSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
-    members: String
+    owner:{
+        id: {
+            type: String,
+            required: true
+        },
+        name : {
+            type: String,
+            required: true
+        }
+    },
+    members:[
+        {
+            id: {
+                type: String,
+                required: true
+            },
+            name : {
+                type: String,
+                required: true
+            }
+        }
+    ]
 })
 
-const Projectdb = mongoose.model('projectdb', projectSchema);
+const Project = mongoose.model('project', projectSchema);
 
-module.exports = Projectdb;
+module.exports = Project;

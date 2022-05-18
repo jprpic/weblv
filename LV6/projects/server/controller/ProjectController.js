@@ -38,6 +38,10 @@ exports.create = (req,res)=>{
         return;
     }
 
+    if (!req.isAuthenticated()){
+        res.status(401).send({message: 'You are not logged in!'});
+    }
+
     // new project
     const project = new Projectdb({
         name : req.body.name,
@@ -46,9 +50,12 @@ exports.create = (req,res)=>{
         description: req.body.description,
         created_at: new Date(Date.now()),
         updated_at: new Date(Date.now()),
-        members: '',
+        owner: {
+            id: req.user.id,
+            name: req.user.username
+        },
+        members: null,
     });
-
 
     // save project in db
     project
@@ -92,14 +99,13 @@ exports.update = (req, res) => {
 // Delete a project by id
 exports.delete = (req, res) => {
     const id = req.params.id;
-
     Projectdb.findByIdAndDelete(id)
         .then(data => {
             if(!data){
                 res.status(404).send({ message: `Cannot delete with id ${id}. Maybe id is wrong.`});
             }else{
                 res.send({
-                    message: "User was deleted successfully!"
+                    message: "Project was deleted successfully!"
                 });
             }
         })

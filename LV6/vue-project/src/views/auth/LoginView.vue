@@ -23,9 +23,9 @@
 
 
 <script>
-import FormInput from "@/components/FormInput.vue";
-import FormLabel from "@/components/FormLabel.vue";
-import FromTextArea from "@/components/FromTextArea.vue";
+import FormInput from "@/components/form/FormInput.vue";
+import FormLabel from "@/components/form/FormLabel.vue";
+import FromTextArea from "@/components/form/FromTextArea.vue";
 import TheButton from "@/components/TheButton.vue";
 import axios from "axios";
 
@@ -47,7 +47,10 @@ export default{
                 this.$router.push('/');
             })
             .catch(err => {
-                console.log(err);
+                if(err.response.status === 401){
+                    alert('User with those credentials doesn\'t exist');
+                }
+                this.password = '';
             })
         }
     },

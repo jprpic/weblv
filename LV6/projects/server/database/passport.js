@@ -36,14 +36,22 @@ passport.use(new LocalStrategy(verifyCallback));
 //         .catch(err => done(err))
 // });
 
-passport.serializeUser(function(user, cb) {
+passport.serializeUser(function(user, done) {
     process.nextTick(function() {
-      cb(null, { id: user.id, username: user.username });
+      console.log('serializeUser');
+      console.log(user);
+      done(null, { _id: user.id, username: user.username });
     });
   });
 
-  passport.deserializeUser(function(user, cb) {
+  passport.deserializeUser(function(userId, done) {
     process.nextTick(function() {
-      return cb(null, user);
+      console.log('deserializeUser');
+      console.log(userId);
+      User.findById(userId)
+        .then((user) => {
+            done(null, user)
+        })
+        .catch(err => done(err))
     });
   });
