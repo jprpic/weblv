@@ -1,14 +1,15 @@
 <script setup>
-import TheButton from './TheButton.vue';
+import TheButton from '../TheButton.vue';
 const props = defineProps({
     id: String,
     name: String,
     price: Number,
+    owner: String,
     tasks_done: String,
     description: String,
     created_at: Date,
     updated_at: Date,
-    members: String
+    members: Array
 })
 </script>
 
@@ -22,8 +23,17 @@ const props = defineProps({
                 <div>
                     <span>Price:&nbsp;</span> {{ price }}
                 </div>
+                <div>
+                    <span>Owner:&nbsp;</span> {{ owner }}
+                </div>
                 <p><span>Tasks done:&nbsp;</span> {{ tasks_done }}</p>
-                <p><span>Project members:&nbsp;</span> {{ members }}</p>
+                <div class="flex">
+                    <span>Project members:&nbsp;</span>
+                        
+                    <div v-for="member in members" class="px-1">
+                        {{ member.username }}
+                    </div>
+                </div>
                 <p><span>Description:&nbsp;</span> {{ description }}</p>
             </div>
             <div class="flex flex-col flex-none min-w-fit w-2/12 px-2">
@@ -55,6 +65,9 @@ export default {
         edit(){
             this.$router.push({name: 'update', params: {id: this.id}});
         },
+        remove(){
+            this.$store.dispatch('deleteProject', this.id);
+        }
     }
 }
 </script>

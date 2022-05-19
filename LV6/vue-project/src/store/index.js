@@ -12,7 +12,8 @@ const store = new Vuex.Store({
           username: null,
           id: null
         },
-        projects: []
+        projects: [],
+        users: []
       }
     },
     getters: getters,

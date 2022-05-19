@@ -1,15 +1,19 @@
 <script setup>
-import ProjectList from '../components/ProjectList.vue';
+import ProjectList from '../components/project/ProjectList.vue';
 </script>
 
 <template>
-  <ProjectList :projects="projects"></ProjectList>
+  <div class="flex flex-col">
+    <div ><h2 class="text-3xl">Hello <span>{{ user.username }}</span>!</h2></div>
+    <button type="button" class="mt-0.5" @click="logout">Logout</button>
+  </div>
+  
+  <br>
+  <span class="text-xl">Your projects</span>
+  <ProjectList class="mt-4" :projects="projects"></ProjectList>
 
-  <button type="button" @click="getSession">Session</button>
   <br>
-  <br>
-  <br>
-  <button type="button" @click="logout">Logout</button>
+  
 </template>
 
 <script>
@@ -17,19 +21,21 @@ export default {
   name: "HomeView.vue",
   computed:{
     projects(){
-      return this.$store.getters.projects;
+      let projects = this.$store.getters.projects;
+      const user = this.$store.getters.user;
+      if(user && projects){
+        // Projects that aren't archived
+        projects = projects.filter(project => !project.finished_at);
+        // Projects where the user is the owner
+        return projects.filter(project => project.owner.id === user.id);
+      }
+      return {};
+    },
+    user(){
+      return this.$store.getters.user;
     }
   },
   methods:{
-    async getSession(){
-      await this.axios.get('http://localhost:4000/api/user')
-        .then(res => {
-          console.log(res);
-        })
-        .catch(err => {
-          console.log(err)
-        })
-    },
     async logout(){
       await this.axios.get('http://localhost:4000/api/logout')
         .then(res => {
@@ -44,3 +50,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+span{
+    font-weight: bold !important; 
+    color: #18A576;
+}
+
+</style>
