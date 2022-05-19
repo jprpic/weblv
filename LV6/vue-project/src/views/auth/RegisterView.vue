@@ -9,12 +9,12 @@
             
             <div class="mt-2">
                 <FormLabel value="Password"/>
-                <FormInput v-model="password" id="password" name="password" type="text" class="w-full"/>
+                <FormInput v-model="password" id="password" name="password" type="password" class="w-full"/>
             </div>
 
             <div class="mt-2">
                 <FormLabel value="Confirm password"/>
-                <FormInput v-model="password_confirm" id="password_confirm" name="password_confirm" type="text" class="w-full"/>
+                <FormInput v-model="password_confirm" id="password_confirm" name="password_confirm" type="password" class="w-full"/>
             </div>
 
             <div class="grid justify-items-stretch mt-4">

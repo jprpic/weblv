@@ -5,15 +5,15 @@
                 <div class="w-full">
                     <div>
                         <FormLabel value="Name"/>
-                        <FormInput class="w-1/2" v-model="project.name" id="name" name="name" type="text" :disabled="!isOwner"/>
+                        <FormInput class="w-1/2" v-model="project.name" id="name" name="name" type="text" :disabled="!isOwner || isArchived"/>
                     </div>
                     <div class="mt-2">
                         <FormLabel value="Price"/>
-                        <FormInput class="w-1/2" v-model="project.price" id="price" name="price" type="number" :disabled="!isOwner"/>
+                        <FormInput class="w-1/2" v-model="project.price" id="price" name="price" type="number" :disabled="!isOwner || isArchived"/>
                     </div>
                 </div>
                 <div>
-                    <TheButton @click="archive()" class="m-2" type="button">Archive</TheButton>
+                    <TheButton @click="archive()" class="m-2" type="button" :disabled="!isOwner || isArchived">Archive</TheButton>
                 </div>
             </div>
 
@@ -21,30 +21,30 @@
                 <FormLabel>Project members</FormLabel>
                 <div class="flex">
                     <div v-for="user in project.members" class="pr-2 pt-1">
-                        <TheButton class="px-3" type="button" @click="changeMember(user)" >{{ user.username }}</TheButton>
+                        <TheButton class="px-3" type="button" @click="changeMember(user)" :disabled="!isOwner || isArchived">{{ user.username }}</TheButton>
                     </div>
                 </div>
                 <FormLabel>Add members</FormLabel>
                 <div class="flex">
                     <div v-for="user in nonMembers" class="pr-2 pt-1">
-                        <TheButton class="px-3" type="button" @click="changeMember(user)" >{{ user.username }}</TheButton>
+                        <TheButton class="px-3" type="button" @click="changeMember(user)" :disabled="!isOwner || isArchived">{{ user.username }}</TheButton>
                     </div>
                 </div>
             </div>
 
             <div class="mt-2">
                 <FormLabel value="Tasks Done"/>
-                <FromTextArea v-model="project.tasks_done" id="tasks_done" name="tasks_done" type="text"/>
+                <FromTextArea v-model="project.tasks_done" id="tasks_done" name="tasks_done" type="text" :disabled="isArchived"/>
             </div>
 
             <div class="mt-2">
                 <FormLabel class="mb-1" value="Description"/>
-                <FromTextArea rows="3" v-model="project.description" :disabled="!isOwner"/>
+                <FromTextArea rows="3" v-model="project.description" :disabled="!isOwner || isArchived"/>
             </div>
 
             <div class="grid justify-items-stretch mt-2">
                 <div class="justify-self-end">
-                    <TheButton>Submit</TheButton>
+                    <TheButton :disabled="isArchived">Submit</TheButton>
                 </div>
             </div>
             
@@ -85,6 +85,9 @@ export default {
             return user.id === owner.id;
           }
           return false;
+      },
+      isArchived(){
+          return this.project.finished_at;
       }
   },
   methods:{

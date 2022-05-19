@@ -126,13 +126,7 @@ function updateProject(id, data, res){
         });
 }
 
-// Delete a project by id
-exports.delete = (req, res) => {
-    if(!req.isAuthenticated()){
-        return res.status(401).send('You are not logged in');
-    }
-
-    const id = req.params.id;
+function deleteProject(id, res){
     Projectdb.findByIdAndDelete(id)
         .then(data => {
             if(!data){
@@ -150,6 +144,27 @@ exports.delete = (req, res) => {
         })
 }
 
+// Delete a project by id
+exports.delete = (req, res) => {
+    if(!req.isAuthenticated()){
+        return res.status(401).send('You are not logged in');
+    }
+
+    const id = req.params.id;
+    Projectdb.findById(id)
+        .then(data => {
+            if(data.owner.id !== req.user._id.toString()){
+                return res.status(401).send({message: 'Only owner can delete the project'});
+            }
+            else{
+                deleteProject(id, res);
+            }
+        }).catch(err => {
+            res.status(500).send({ message: `Error retrieving project with id ${id}`});
+        })
+    
+}
+
 exports.archive = (req, res) => {
     if(!req.isAuthenticated()){
         return res.status(401).send('You are not logged in');
@@ -165,9 +180,16 @@ exports.archive = (req, res) => {
                     message: `Project with ${id} not found!`
                 });
             }else{
-                data.finished_at = new Date(Date.now());
-                // Update the project with archived date
-                updateProject(id, data, res);
+                if(data.finished_at){
+                    return res.status(400).send({message: 'Project is already archived'});
+                }
+                else if(data.owner.id !== req.user._id.toString()){
+                    return res.status(401).send({message: 'Only owner can archive projects!'});
+                }else{
+                    data.finished_at = new Date(Date.now());
+                    // Update the project with archived date
+                    updateProject(id, data, res);
+                }
             }
         })
         .catch(err => {
