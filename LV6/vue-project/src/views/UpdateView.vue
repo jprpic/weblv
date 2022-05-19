@@ -5,11 +5,11 @@
                 <div class="w-full">
                     <div>
                         <FormLabel value="Name"/>
-                        <FormInput v-model="project.name" id="name" name="name" type="text" :disabled="!isOwner"/>
+                        <FormInput class="w-1/2" v-model="project.name" id="name" name="name" type="text" :disabled="!isOwner"/>
                     </div>
                     <div class="mt-2">
                         <FormLabel value="Price"/>
-                        <FormInput v-model="project.price" id="price" name="price" type="number" :disabled="!isOwner"/>
+                        <FormInput class="w-1/2" v-model="project.price" id="price" name="price" type="number" :disabled="!isOwner"/>
                     </div>
                 </div>
                 <div>
@@ -21,13 +21,13 @@
                 <FormLabel>Project members</FormLabel>
                 <div class="flex">
                     <div v-for="user in project.members" class="pr-2 pt-1">
-                        <TheButton class="px-3" type="button" @click="changeMember(user)" :disabled="!isOwner">{{ user.username }}</TheButton>
+                        <TheButton class="px-3" type="button" @click="changeMember(user)" >{{ user.username }}</TheButton>
                     </div>
                 </div>
                 <FormLabel>Add members</FormLabel>
                 <div class="flex">
                     <div v-for="user in nonMembers" class="pr-2 pt-1">
-                        <TheButton class="px-3" type="button" @click="changeMember(user)" :disabled="!isOwner">{{ user.username }}</TheButton>
+                        <TheButton class="px-3" type="button" @click="changeMember(user)" >{{ user.username }}</TheButton>
                     </div>
                 </div>
             </div>

@@ -6,7 +6,7 @@ export default {
 </script>
 
 <template>
-    <input class="rounded-md shadow-sm px-1 w-1/3 h-7 mt-1" :value="modelValue" @input="$emit('update:modelValue', $event.target.value)" ref="input">
+    <input class="rounded-md shadow-sm px-1 w-full h-7 mt-1" :value="modelValue" @input="$emit('update:modelValue', $event.target.value)" ref="input">
 </template>
 
 
