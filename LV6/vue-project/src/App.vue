@@ -1,19 +1,18 @@
 <script setup>
-import { RouterLink, RouterView } from "vue-router";
+import { RouterView } from "vue-router";
 import TheHeader from "@/components/TheHeader.vue";
 </script>
 
 <template>
   <div class="grid justify-items-center">
     <div class="pb-4">
-      <TheHeader />
+      <TheHeader/>
     </div>
-
+    
     <RouterView />
   </div>
-
-  
 </template>
+
 
 <style>
 @import "@/assets/base.css";
@@ -33,6 +32,12 @@ import TheHeader from "@/components/TheHeader.vue";
 header {
   line-height: 1.5;
   max-height: 100vh;
+}
+
+form{
+    background-color: var(--vt-c-divider-light-1);
+    border-radius: 0.5rem;
+    padding: 1rem;
 }
 
 a,

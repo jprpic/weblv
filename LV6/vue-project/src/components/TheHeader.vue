@@ -1,12 +1,13 @@
 <script setup>
-import { RouterLink } from "vue-router";
+import GuestLayout from "../layouts/GuestLayout.vue";
+import AuthorizedLayout from "../layouts/AuthorizedLayout.vue";
 </script>
 
 <template>
-    <header>
-        <nav>
-            <RouterLink to="/">Home</RouterLink>
-            <RouterLink to="/create">Create</RouterLink>
-        </nav>
-  </header>
+    <div v-if="this.$store.getters.auth">
+        <AuthorizedLayout />
+    </div>
+    <div v-else>
+        <GuestLayout />
+    </div>
 </template>

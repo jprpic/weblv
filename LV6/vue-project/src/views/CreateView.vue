@@ -1,40 +1,6 @@
-<script>
-import FormInput from "../components/FormInput.vue";
-import FormLabel from "../components/FormLabel.vue";
-import FromTextArea from "../components/FromTextArea.vue";
-import TheButton from "../components/TheButton.vue";
-
-export default {
-  components: { FormInput, FormLabel, FromTextArea, TheButton },
-  data() {
-    return {
-      name: '',
-      price: null,
-      description: ''
-    }
-  },
-  methods:{
-      async submit(){
-          await this.axios.post("http://localhost:4000/api/projects", {
-                name: this.name,
-                price: this.price,
-                description: this.description
-            })
-            .then(response => {
-                console.log(response);
-            })
-            .catch(err => {
-                console.log(err);
-            });
-            this.$router.push('/');
-      }
-  }
-}
-</script>
-
 <template>
-    <div class="w-3/4 form-div  rounded-lg">
-        <form @submit.prevent="submit" class="p-4">
+    <div class="w-3/4 form-div">
+        <form @submit.prevent="submit">
             <div>
                 <FormLabel value="Name"/>
                 <FormInput v-model="name" id="name" name="name" type="text"/>
@@ -60,10 +26,31 @@ export default {
 </template>
 
 
-<style scoped>
+<script>
+import FormInput from "@/components/form/FormInput.vue";
+import FormLabel from "@/components/form/FormLabel.vue";
+import FromTextArea from "@/components/form/FromTextArea.vue";
+import TheButton from "@/components/TheButton.vue";
 
-.form-div{
-    background-color: var(--vt-c-divider-light-1);
+export default {
+  components: { FormInput, FormLabel, FromTextArea, TheButton },
+  data() {
+    return {
+      name: '',
+      price: null,
+      description: ''
+    }
+  },
+  methods:{
+      submit(){
+        this.$store.dispatch('createProject', {
+            name: this.name,
+            price: this.price,
+            description: this.description
+        })
+        this.$router.push('/');
+      }
+  }
 }
+</script>
 
-</style>

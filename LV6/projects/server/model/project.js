@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-var schema = new mongoose.Schema({
+const projectSchema = new mongoose.Schema({
     name:{
         type: String,
         required: true
@@ -10,7 +10,10 @@ var schema = new mongoose.Schema({
         required: true
     },
     tasks_done: String,
-    description: String,
+    description: {
+        type: String,
+        required: true
+    },
     created_at: {
         type: Date,
         required: true
@@ -19,9 +22,34 @@ var schema = new mongoose.Schema({
         type: Date,
         required: true
     },
-    members: String
+    finished_at:{
+        type: Date,
+        required: false
+    },
+    owner:{
+        id: {
+            type: String,
+            required: true
+        },
+        username : {
+            type: String,
+            required: true
+        }
+    },
+    members:[
+        {
+            id: {
+                type: String,
+                required: true
+            },
+            username : {
+                type: String,
+                required: true
+            }
+        }
+    ]
 })
 
-const Projectdb = mongoose.model('projectdb', schema);
+const Project = mongoose.model('project', projectSchema);
 
-module.exports = Projectdb;
+module.exports = Project;
